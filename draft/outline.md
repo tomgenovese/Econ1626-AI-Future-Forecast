@@ -19,7 +19,12 @@ First-draft outline for ECON1626 Assessment 3, the AI Future Forecast interactiv
 
 - [HAVE] Chen & Stratton (2026), Harvard job market paper, for the framing (the Amodei quotes in its introduction).
 - [HAVE] Kremer (1993) on the O-ring theory, Gans & Goldfarb (2026) on O-ring automation, and Jones & Tonetti (2026) on weak links. All are cited in Chen & Stratton.
-- [RESEARCH] One headline Australian forecast to push against, such as a consultancy, Treasury or Tech Council estimate of AI's GDP contribution. This gives the thesis a foil.
+- [HAVE] **The foil: big forecasts versus flat productivity.** This becomes the opening chart.
+    - [Microsoft and the Tech Council (2023)](https://news.microsoft.com/en-au/features/generative-ai-could-contribute-115-billion-annually-to-australias-economy-by-2030/): generative AI could add $45bn (slow adoption) to $115bn (fast adoption) a year by 2030. Note this is an industry-funded estimate.
+    - [Productivity Commission interim report (August 2025)](https://ia.acs.org.au/article/2025/ai-laws-should-be-a-last-resort-productivity-commission.html): about $116bn and +4.3% labour productivity over a decade.
+    - [ABS national accounts](https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release): GDP per hour worked *fell* 0.2% in the year to June 2026.
+    - **Role:** the gap between forecast and measurement is the puzzle; the verification bottleneck is our explanation.
+- [HAVE] Supporting voice: [CSIRO Data61 director Jon Whittle (July 2025)](https://www.csiro.au/en/news/all/articles/2025/july/does-ai-actually-boost-productivity-the-evidence-is-murky) argues the evidence of AI productivity gains is murky at individual, firm and national levels, and that checking AI output can raise workloads.
 
 ## 2. The evidence hook: what happened in software (~300 words)
 
@@ -70,12 +75,17 @@ First-draft outline for ECON1626 Assessment 3, the AI Future Forecast interactiv
 **Evidence**
 
 - [HAVE] 16% of Chen & Stratton's sample are financial services and insurance firms, and finance firms adopted AI assistants *later* (their balance table).
-- [RESEARCH] Size of Australian financial and insurance services: share of GDP, employment and labour productivity trend (ABS national accounts and Labour Force).
-- [RESEARCH] Australian bank AI adoption examples, from public statements by CBA, NAB, ANZ and Westpac on AI in engineering, operations and customer service.
-- [RESEARCH] Cost-of-error evidence: the scale of Australian remediation programs after the Hayne Royal Commission, showing ℓ is large.
+- [HAVE] **Finance is adopting fast.** This becomes a bar chart of AI adoption by industry.
+    - [ABS Characteristics of Australian Business 2024-25](https://www.abs.gov.au/statistics/industry/technology-and-innovation/characteristics-australian-business/2024-25) (released 25 June 2026): 24% of financial and insurance services businesses used AI, up from 1% in 2021-22, the fastest growth of any industry ([ABS media release](https://www.abs.gov.au/media-centre/media-releases/business-adoption-artificial-intelligence-accelerates-2024-25)).
+    - Comparison: information, media and telecoms 38%, professional services 24%, all businesses 12%.
+    - **Role:** the software bottleneck from §2 is arriving in finance now.
+- [HAVE] **The cost of an error (ℓ) is large.**
+    - [ASIC (March 2023)](https://brokernews.com.au/news/breaking-news/banks-to-pay-4-7-billion-in-compensation-to-customers-282142.aspx): AMP, ANZ, CBA, Macquarie, NAB and Westpac paid or offered $4.7bn for fees-for-no-service and non-compliant advice.
+    - **Role:** evidences the model extension. High ℓ means more review per draft, so a bigger bottleneck in finance. [TO DO] Cite the ASIC release directly (likely 23-057MR) rather than the news report.
+- [HAVE] Australian bank example: [CBA ranked top in Asia-Pacific in the 2026 Evident AI Index](https://www.brokernews.com.au/news/breaking-news/commbank-tops-asiapacific-ai-ranking-fasttracks-engineer-training-290113.aspx) and is sending engineers to an AI coding residency. Shows leading banks are pushing AI into engineering, which is the software channel directly.
+- [RESEARCH] Sector size: financial and insurance services' share of GDP, from the ABS national accounts industry tables (not yet confirmed from a source).
 - [RESEARCH] [VERIFY] ASIC REP 798, "Beware the gap" (2024): licensees' AI governance lagging their AI adoption.
 - [RESEARCH] [VERIFY] APRA CPS 230 Operational Risk Management (in force 2025): accountability for technology and third-party risk.
-- [RESEARCH] Tech-sector employment inside banks. Banks are large software employers, which links the software evidence to finance directly.
 
 ## 4. Three scenarios to 2030 (~450 words)
 
@@ -93,7 +103,11 @@ The scenarios differ on two things: how fast verification capacity grows, and wh
 **Evidence and modelling to do**
 
 - [HAVE] Pass-through calibration from Chen & Stratton.
-- [RESEARCH] Baseline sector labour productivity growth (ABS and Productivity Commission) to anchor the 2026 starting point.
+- [HAVE] **Starting point for the scenario model.**
+    - [Jobs and Skills Australia (ABS Labour Force, August 2025)](https://www.jobsandskills.gov.au/data/labour-market-insights/industries/financial-and-insurance-services): 552,900 employed in financial and insurance services, 3.8% of the workforce, up 2.2% over the year; median age 40.
+    - [ABS national accounts](https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release): sector output (gross value added) up 4.8% in the year to June 2026.
+    - **Role:** each scenario applies its pass-through rate to this 2026 base to produce output and jobs paths to 2030.
+- [HAVE] **Downside signpost: adoption outrunning verification.** In an Experian survey reported by [Australian Broker (October 2026)](https://www.brokernews.com.au/news/breaking-news/commbank-tops-asiapacific-ai-ranking-fasttracks-engineer-training-290113.aspx), 72% of Australian financial institutions said they use agentic AI for underwriting, but only 3% said their data was fully ready. Industry survey, so use as colour rather than backbone. [TO DO] Find the original Experian report.
 - [RESEARCH] Entry-level evidence: Brynjolfsson, Chandar & Chen (2025), "Canaries in the coal mine", on young workers in AI-exposed jobs. Note the tension with Chen & Stratton's null junior effect.
 - [RESEARCH] [VERIFY] A precedent for the downside: Robodebt as a public-sector case of automation without verification, plus any bank algorithm or AML failures.
 - [TO BUILD] A simple scenario model producing 2026 to 2030 paths for the scenario switcher, with assumptions documented in §7.
@@ -112,8 +126,11 @@ Five levers, each tied to a channel. The key split: extra review capacity fixes 
 
 **Evidence**
 
-- [RESEARCH] [VERIFY] Current Australian Government AI policy: the Voluntary AI Safety Standard, the proposals for mandatory guardrails in high-risk settings, and any 2025 or 2026 national AI plan. This has moved recently.
-- [RESEARCH] Productivity Commission work on AI and data (2025).
+- [HAVE] **The policy tension to argue.** The [Productivity Commission's interim report (August 2025)](https://ia.acs.org.au/article/2025/ai-laws-should-be-a-last-resort-productivity-commission.html) recommended pausing work on mandatory guardrails for high-risk AI and treating AI-specific regulation as a "last resort", refining existing laws instead.
+    - Our thesis says the right verification standards are what *unlock* the upside scenario.
+    - **Position to take:** targeted assurance standards for AI-generated outputs in finance, delivered through existing regulators (ASIC, APRA), rather than broad AI laws. This engages the PC's argument instead of ignoring it.
+- [RESEARCH] [VERIFY] The PC's *final* report (due late 2025): did it keep the pause recommendation?
+- [RESEARCH] [VERIFY] Current federal AI policy: the Voluntary AI Safety Standard, the status of mandatory guardrails, and any national AI plan. This has moved recently.
 - [RESEARCH] The EU AI Act's treatment of credit scoring as high-risk, as a comparison point.
 - [HAVE] Measurement reform comes straight from Chen & Stratton's managerial implications.
 
@@ -135,16 +152,38 @@ Five levers, each tied to a channel. The key split: extra review capacity fixes 
 **Evidence**
 
 - [HAVE] Chen & Stratton's caveats: partial versus general equilibrium, and short-run estimates.
-- [RESEARCH] The ABS note on measuring financial services output (FISIM), supporting the measurement-gap point.
+- [HAVE] **Finance output is mostly imputed.** A [Productivity Commission staff note (2016)](https://www.pc.gov.au/inquiries-and-research/productivity-financial-insurance-services) found FISIM (imputed intermediation services) made up about 77% of finance gross output in 2011-12, and insurance and superannuation output was also largely imputed.
+    - **Role:** AI gains, or their absence, will be hard to see in official statistics. This is an honest limitation, and it reinforces §1's point that forecasts and measured productivity can diverge. Cite as a structural point, since the figures are dated.
+- [HAVE] CSIRO's 2025 trial of Microsoft 365 Copilot in an Australian government agency (about 300 staff): most reported benefits, 30% did not, and even those with gains expected more than they got ([CSIRO](https://www.csiro.au/en/news/all/articles/2025/july/does-ai-actually-boost-productivity-the-evidence-is-murky)). Shows self-reported gains are a weak measure.
 
 ## Research queue (priority order)
 
-- [ ] Australian financial services size, employment and productivity (ABS, Productivity Commission)
+- [x] Australian financial services employment and output growth (Jobs and Skills Australia, ABS)
+- [x] Headline Australian AI forecasts to use as a foil (Microsoft/Tech Council; Productivity Commission)
+- [x] Australian AI adoption by industry (ABS)
+- [x] Cost-of-error and remediation scale ($4.7bn, ASIC)
+- [x] Australian bank AI adoption example (CBA)
+- [ ] Sector share of GDP (ABS national accounts industry tables)
+- [ ] Productivity Commission final report and current federal AI policy (2026)
 - [ ] ASIC REP 798 and APRA CPS 230 details
-- [ ] Current Australian Government AI policy position (2026)
 - [ ] Demirer, Musolff & Yang (2026); Becker et al. (2025)
 - [ ] Brynjolfsson, Chandar & Chen (2025) entry-level evidence
-- [ ] Australian bank AI adoption statements
-- [ ] Cost-of-error and remediation scale in Australian finance
-- [ ] A headline Australian AI-GDP forecast to use as a foil
+- [ ] Original sources for the ASIC $4.7bn release and the Experian survey
 - [ ] Industry Week claim (from the Week 9 notes)
+
+## Sources (so far)
+
+To be converted to RMIT Harvard style for the final reference list.
+
+| Source | Type | Used in |
+| --- | --- | --- |
+| Chen, F & Stratton, J 2026, *Artificial Intelligence in the Firm: Bottlenecks in Software Production*, Harvard University job market paper | Research paper | §1–§5, §7 |
+| [ABS, *Characteristics of Australian Business, 2024-25*](https://www.abs.gov.au/statistics/industry/technology-and-innovation/characteristics-australian-business/2024-25) | Official data | §3 |
+| [ABS, *Australian National Accounts: National Income, Expenditure and Product, June 2026*](https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release) | Official data | §1, §4 |
+| [Jobs and Skills Australia, *Financial and Insurance Services*](https://www.jobsandskills.gov.au/data/labour-market-insights/industries/financial-and-insurance-services) | Official data | §4 |
+| [Productivity Commission interim report, *Harnessing data and digital technology* (Aug 2025), via ACS Information Age](https://ia.acs.org.au/article/2025/ai-laws-should-be-a-last-resort-productivity-commission.html) | Government report (secondary) | §1, §5 |
+| [Productivity Commission staff note, *Productivity in Financial and Insurance Services* (2016)](https://www.pc.gov.au/inquiries-and-research/productivity-financial-insurance-services) | Government research | §7 |
+| [Microsoft & Tech Council of Australia, *Australia's Generative AI Opportunity* (2023)](https://news.microsoft.com/en-au/features/generative-ai-could-contribute-115-billion-annually-to-australias-economy-by-2030/) | Industry report | §1 |
+| [Whittle, J 2025, *Does AI actually boost productivity? The evidence is murky*, CSIRO](https://www.csiro.au/en/news/all/articles/2025/july/does-ai-actually-boost-productivity-the-evidence-is-murky) | Expert commentary | §1, §7 |
+| [Australian Broker 2023, *Banks to pay $4.7 billion in compensation* (reporting ASIC)](https://brokernews.com.au/news/breaking-news/banks-to-pay-4-7-billion-in-compensation-to-customers-282142.aspx) | News (replace with ASIC release) | §3 |
+| [Australian Broker 2026, *CommBank tops Asia-Pacific AI ranking*](https://www.brokernews.com.au/news/breaking-news/commbank-tops-asiapacific-ai-ranking-fasttracks-engineer-training-290113.aspx) | News | §3, §4 |
