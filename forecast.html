@@ -94,7 +94,29 @@
 
   <div class="panel" style="grid-column:1/-1;position:static">
     <div class="panel__bar"><b>Approve the drafts</b><span>60 seconds</span></div>
-    <div class="panel__body"><div class="module-pending"><b>Building next:</b> drafts flood your queue, first code, then finance documents. Try to keep up.</div></div>
+    <div class="panel__body game" id="game">
+      <div class="game__start" id="game-start">
+        <p class="guess__q">You are the senior reviewer. An AI agent sends you drafts. Approve the good ones and reject the ones with an error. How many can you get through in 60 seconds?</p>
+        <button class="btn btn--go" id="game-go">Start reviewing</button>
+      </div>
+      <div class="game__play" id="game-play" hidden>
+        <div class="game__hud">
+          <span>Time <b id="g-time">60</b>s</span><span>Waiting <b id="g-wait" class="warn">0</b></span><span>Approved <b id="g-ok">0</b></span><span>Rejected <b id="g-no">0</b></span>
+          <button class="btn" id="game-skip" style="padding:0.2rem 0.6rem;font-size:0.75rem">Skip</button>
+        </div>
+        <div class="game__timer"><div id="g-bar"></div></div>
+        <div class="game__banner" id="g-banner" hidden>&gt; AI AGENTS NOW DEPLOYED IN FINANCE</div>
+        <div class="game__row">
+          <div class="draft" id="g-draft" aria-live="polite"></div>
+          <div class="game__pile" id="g-pile" aria-hidden="true"></div>
+        </div>
+        <div class="game__btns">
+          <button class="btn btn--go" id="g-approve"><span class="key" style="color:#000">A</span>Approve</button>
+          <button class="btn" id="g-reject"><span class="key">R</span>Reject</button>
+        </div>
+      </div>
+      <div class="game__end" id="game-end" hidden></div>
+    </div>
   </div>
 </section>
 

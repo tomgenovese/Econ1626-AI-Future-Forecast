@@ -271,7 +271,90 @@
     render();
   }
 
+
+  /* ---------- Approve-the-drafts game (60 seconds) ---------- */
+  const CODE = [
+    { t: "Pull request #412", r: [["Change", "Add input check to login form"], ["Tests", "14 passed"], ["Files", "2 changed"]] },
+    { t: "Pull request #415", r: [["Change", "Speed up report export"], ["Tests", "31 passed"], ["Files", "4 changed"]] },
+    { t: "Pull request #419", r: [["Change", "Fix date format on statements"], ["Tests", "9 passed"], ["Files", "1 changed"]] },
+    { t: "Pull request #421", r: [["Change", "Refactor payment module"], ["Tests", "0 run"], ["Files", "38 changed"]], bad: true },
+    { t: "Pull request #426", r: [["Change", "Update login page"], ["Tests", "22 passed"], ["Note", "Removes password check"]], bad: true },
+    { t: "Pull request #430", r: [["Change", "Add logging to API"], ["Tests", "17 passed"], ["Files", "3 changed"]] },
+  ];
+  const FIN = [
+    { t: "Loan assessment", r: [["Income", "$92,000"], ["Repayments", "$1,850 / month"], ["Serviceability", "PASS"]] },
+    { t: "Loan assessment", r: [["Income", "$41,000"], ["Repayments", "$3,900 / month"], ["Serviceability", "PASS"]], bad: true },
+    { t: "Statement of advice", r: [["Client", "Age 67, retired"], ["Risk profile", "Conservative"], ["Recommends", "Cash and bonds"]] },
+    { t: "Statement of advice", r: [["Client", "Age 69, retired"], ["Risk profile", "Conservative"], ["Recommends", "90% crypto"]], bad: true },
+    { t: "AML screening report", r: [["Transactions", "312 screened"], ["Flagged", "2, escalated"], ["Status", "Complete"]] },
+    { t: "AML screening report", r: [["Transactions", "0 screened"], ["Flagged", "0"], ["Status", "Complete"]], bad: true },
+    { t: "Hardship response", r: [["Customer", "Lost job in May"], ["Offer", "3-month pause"], ["Fees", "Waived"]] },
+  ];
+  function initGame() {
+    const root = $("#game"); if (!root) return;
+    const st = { on: false };
+    const draftEl = $("#g-draft"), pile = $("#g-pile");
+    const pick = arr => ({ ...arr[Math.floor(Math.random() * arr.length)] });
+    function show() {
+      const d = st.queue[0];
+      if (!d) { draftEl.innerHTML = '<h4>Queue empty</h4><p style="margin:0;color:var(--ink-dim)">Waiting for the next AI draft...</p>'; return; }
+      draftEl.innerHTML = `<h4>${d.t}</h4><dl>${d.r.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
+    }
+    function hud() {
+      $("#g-time").textContent = Math.max(0, Math.ceil(st.left));
+      $("#g-wait").textContent = Math.max(0, st.queue.length - 1);
+      $("#g-ok").textContent = st.ok; $("#g-no").textContent = st.no;
+      $("#g-bar").style.width = (st.left / 60) * 100 + "%";
+      pile.innerHTML = st.queue.slice(1, 60).map(d => `<i class="${d.fin ? "fin" : ""}"></i>`).join("") +
+        (st.queue.length > 61 ? `<span style="font-family:var(--mono);font-size:.75rem;color:var(--amber)">+${st.queue.length - 61}</span>` : "");
+    }
+    function spawn() {
+      const fin = st.left < 30;
+      if (fin && !st.bannered) { st.bannered = true; $("#g-banner").hidden = false; }
+      st.queue.push({ ...pick(fin ? FIN : CODE), fin });
+      if (st.queue.length === 1) show();
+      hud();
+      // arrivals speed up from one every 2.6s to one every 0.7s
+      const gap = Math.max(700, 2600 - (60 - st.left) * 45);
+      st.spawnT = setTimeout(() => st.on && spawn(), gap);
+    }
+    function decide(approve) {
+      if (!st.on || !st.queue.length) return;
+      const d = st.queue.shift();
+      if (approve) { st.ok++; if (d.bad) st.missed++; } else { st.no++; if (!d.bad) st.wrongReject++; else st.caught++; }
+      draftEl.classList.remove("flash-ok", "flash-bad"); void draftEl.offsetWidth;
+      draftEl.classList.add((approve && !d.bad) || (!approve && d.bad) ? "flash-ok" : "flash-bad");
+      show(); hud();
+    }
+    function end() {
+      st.on = false; clearTimeout(st.spawnT); clearInterval(st.tick);
+      const waiting = st.queue.length, checked = st.ok + st.no;
+      $("#game-play").hidden = true;
+      const e = $("#game-end"); e.hidden = false;
+      e.innerHTML = `<p class="big">You checked ${checked} drafts. ${waiting} were still waiting.</p>
+        <p>You approved ${st.missed} with an error and caught ${st.caught}. The AI never slowed down; you were the bottleneck. That is the review queue Chen and Stratton measured, and finance drafts take longer to check.</p>
+        <button class="btn" id="game-again">Play again</button>`;
+      $("#game-again").addEventListener("click", start);
+    }
+    function start() {
+      Object.assign(st, { on: true, left: 60, queue: [], ok: 0, no: 0, missed: 0, caught: 0, wrongReject: 0, bannered: false });
+      $("#game-start").hidden = true; $("#game-end").hidden = true; $("#game-play").hidden = false; $("#g-banner").hidden = true;
+      show(); hud(); spawn();
+      const t0 = performance.now();
+      st.tick = setInterval(() => { st.left = 60 - (performance.now() - t0) / 1000; hud(); if (st.left <= 0) end(); }, 250);
+    }
+    $("#game-go").addEventListener("click", start);
+    $("#game-skip").addEventListener("click", end);
+    $("#g-approve").addEventListener("click", () => decide(true));
+    $("#g-reject").addEventListener("click", () => decide(false));
+    document.addEventListener("keydown", e => {
+      if (!st.on || e.target.matches("input, textarea")) return;
+      if (e.key === "a" || e.key === "A") decide(true);
+      if (e.key === "r" || e.key === "R") decide(false);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    initSteps(); initGuess(); initPolicy(); initAssume();
+    initSteps(); initGuess(); initPolicy(); initAssume(); initGame();
   });
 })();

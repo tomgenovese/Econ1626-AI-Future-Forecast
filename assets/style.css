@@ -390,3 +390,28 @@ footer { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); pa
   .section--policy .prose { columns: 1; }
 }
 @media (max-width: 900px) { .cite { white-space: normal; } }
+
+/* Approve-the-drafts game */
+.game__hud { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; font-family: var(--mono); font-size: 0.85rem; color: var(--ink-dim); }
+.game__hud b { color: var(--ink); font-weight: 500; }
+.game__hud b.warn { color: var(--amber); }
+.game__hud .btn { margin-left: auto; }
+.game__timer { height: 4px; background: #0b1a10; margin: 0.6rem 0 1rem; }
+.game__timer div { height: 100%; width: 100%; background: var(--neon); transition: width 0.25s linear; }
+.game__banner { font-family: var(--mono); font-size: 0.85rem; color: #000; background: var(--amber); padding: 0.35rem 0.6rem; margin-bottom: 0.75rem; }
+.game__row { display: grid; grid-template-columns: minmax(0, 1fr) 11rem; gap: 1rem; align-items: start; }
+.draft { border: 1px solid var(--rule-strong); background: #030805; padding: 1rem; font-family: var(--mono); font-size: 0.85rem; min-height: 9.5rem; }
+.draft h4 { margin: 0 0 0.6rem; font-weight: 500; color: var(--neon); font-size: 0.9rem; }
+.draft dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; }
+.draft dt { color: var(--ink-dim); }
+.draft dd { margin: 0; color: var(--ink); }
+.draft.flash-ok { border-color: var(--s-green); }
+.draft.flash-bad { border-color: var(--red); }
+.game__pile { display: flex; flex-wrap: wrap; gap: 3px; align-content: flex-start; min-height: 9.5rem; border: 1px dashed var(--rule); padding: 0.4rem; }
+.game__pile i { width: 12px; height: 15px; background: #1f4a2c; border: 1px solid #2f6b42; }
+.game__pile i.fin { background: #3a2a05; border-color: #995c00; }
+.game__btns { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.game__btns .btn { min-width: 8rem; }
+.game__end p { margin: 0 0 0.8rem; }
+.game__end .big { font-family: var(--mono); font-size: 1.6rem; color: var(--neon); line-height: 1.25; }
+@media (max-width: 900px) { .game__row { grid-template-columns: 1fr; } .game__pile { min-height: 3rem; } }
