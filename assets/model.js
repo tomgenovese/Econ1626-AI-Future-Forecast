@@ -1,5 +1,5 @@
-/* Verification-bottleneck scenario model (port of draft/model_prototype.py).
-   Spec, sources and assumptions: draft/model.md.
+/* Verification-bottleneck scenario model (port of Content/model_prototype.py).
+   Spec, sources and assumptions: Content/model.md.
    All outputs are indexes relative to a world without AI (= 1.0). */
 
 const Model = (() => {

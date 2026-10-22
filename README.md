@@ -53,11 +53,12 @@ econ1626-ai-future-forecast/
 │   ├── model.js            The scenario model (runs in the browser)
 │   ├── app.js              Boot sequence, ticker, navigation, charts, scenario switcher
 │   └── modules.js          Interactives: guess first, drafts game, checkout queue, policy dial, regulator, assumptions
-├── draft/
+├── Content/
 │   ├── outline.md          Research outline with evidence status for each section
-│   ├── essay.md            Draft 1 of the essay text (superseded by forecast.html)
+│   ├── essay-final.md      The final essay text in one readable file (mirrors the website)
+│   ├── essay.md            Draft 1 of the essay text (superseded)
 │   ├── model.md            Full model specification, parameters and sources
-│   ├── model_prototype.py  Python prototype of the model (run: python3 draft/model_prototype.py)
+│   ├── model_prototype.py  Python prototype of the model (run: python3 Content/model_prototype.py)
 │   └── site-plan.md        Design and interactive specifications
 └── README.md               This file
 ```

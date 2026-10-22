@@ -69,7 +69,7 @@ Dotted underline on terms like *pass-through*, *checking capacity*, *backlog*, *
 | --- | --- |
 | `forecast.html` | The essay page |
 | `assets/style.css` | Terminal theme |
-| `assets/model.js` | The scenario model (port of `draft/model_prototype.py`) |
+| `assets/model.js` | The scenario model (port of `Content/model_prototype.py`) |
 | `assets/app.js` | Interactives and charts |
 | `data/scenarios.json` | Scenario presets |
 | `data/sources.json` | Sourced inputs: ABS adoption by industry, Harvard results, forecasts |

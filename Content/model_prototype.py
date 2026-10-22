@@ -1,8 +1,8 @@
 """
 Prototype of the verification-bottleneck scenario model (ECON1626 A3).
 
-Run:  python3 draft/model_prototype.py
-See draft/model.md for the full specification, sources and assumptions.
+Run:  python3 Content/model_prototype.py
+See Content/model.md for the full specification, sources and assumptions.
 All outputs are indexes relative to a world without AI (= 1.0).
 """
 
