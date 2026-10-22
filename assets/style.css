@@ -426,3 +426,55 @@ footer { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); pa
 .reg__log li { margin-bottom: 0.3rem; }
 .reg__verdict { font-family: var(--mono); font-size: 1.3rem; line-height: 1.3; margin: 0 0 0.5rem; }
 @media (max-width: 900px) { .reg__grid { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   Interactive affordances: one reserved hi-vis colour
+   ========================================================= */
+:root { --hi: #ffe600; --hi-ink: #000; }
+.tag-play {
+  position: relative; overflow: hidden; display: inline-block;
+  background: var(--hi); color: var(--hi-ink) !important;
+  font-family: var(--mono); font-weight: 600; font-size: 0.72rem;
+  padding: 0.12rem 0.55rem; letter-spacing: 0.02em;
+}
+.tag-play::after, .btn--go::after, .lever:not([aria-pressed=true])::after {
+  content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.75), transparent);
+  animation: shine 2.6s ease-in-out infinite; pointer-events: none;
+}
+@keyframes shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+
+/* Panels that hold an interactive glow until first used */
+.panel.is-interactive { border-color: var(--hi); animation: glow 2.2s ease-in-out infinite; }
+.panel.is-interactive > .panel__bar { border-bottom-color: var(--hi); }
+.panel.is-interactive.touched { animation: none; box-shadow: none; border-color: #7a6f00; }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,230,0,0); } 50% { box-shadow: 0 0 22px 2px rgba(255,230,0,0.35); } }
+
+/* Buttons and controls in hi-vis */
+.btn--go { position: relative; overflow: hidden; background: var(--hi); border-color: var(--hi); color: var(--hi-ink); }
+.btn--go:hover { background: #fff; border-color: #fff; }
+.btn--sm { padding: 0.25rem 0.7rem; font-size: 0.75rem; }
+[data-scenario], .reg__opts .btn, #game-skip, #a-reset, #game-again, #reg-again { border-color: var(--hi); }
+[data-scenario]:hover, .reg__opts .btn:hover { background: #1a1700; }
+[data-scenario] .key { color: var(--hi); }
+[data-scenario][aria-pressed=true] { background: var(--hi); border-color: var(--hi); color: #000; }
+input[type=range] { accent-color: var(--hi); }
+.ctrl output { color: var(--hi); }
+.lever { position: relative; overflow: hidden; border-color: #6b6100; }
+.lever .box { border-color: var(--hi); }
+.lever[aria-pressed=true] { border-color: var(--hi); background: #1a1700; }
+.lever[aria-pressed=true] .box { background: var(--hi); }
+.pip { border-color: var(--hi); }
+.pip.used { background: var(--hi); }
+.credits b { color: var(--hi); }
+.step strong:first-child:last-child, .step .try { color: var(--hi); }
+.hint { font-family: var(--mono); font-size: 0.85rem; color: var(--ink); margin: 0 0 0.75rem; }
+.hint .tag-play { margin-right: 0.5rem; }
+.queue__clock { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--ink-dim); }
+.queue__clock b { color: var(--hi); font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tag-play::after, .btn--go::after, .lever::after { animation: none; display: none; }
+  .panel.is-interactive { animation: none; box-shadow: 0 0 0 1px var(--hi); }
+}
+.ctrl input[type=range] { accent-color: var(--hi); }

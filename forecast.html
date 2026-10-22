@@ -42,7 +42,7 @@
 
   <div class="panel-wrap">
     <div class="panel">
-      <div class="panel__bar"><b>Guess first</b><span>718 firms</span></div>
+      <div class="panel__bar"><b>Guess first</b><span class="tag-play">▶ Try it</span></div>
       <div class="panel__body guess" id="guess">
         <p class="guess__q">When firms gave coders AI agents, they wrote 30% more code. How much more finished work did they ship?</p>
         <div class="ctrl">
@@ -93,7 +93,7 @@
   </div>
 
   <div class="panel" style="grid-column:1/-1;position:static">
-    <div class="panel__bar"><b>Approve the drafts</b><span>60 seconds</span></div>
+    <div class="panel__bar"><b>Approve the drafts</b><span class="tag-play">▶ Play: 60 seconds</span></div>
     <div class="panel__body game" id="game">
       <div class="game__start" id="game-start">
         <p class="guess__q">You are the senior reviewer. Approve the AI's good drafts and reject those with an error. How many can you clear in 60 seconds?</p>
@@ -133,6 +133,7 @@
           <p class="panel__note">Finance rose from 1% in 2021–22, the fastest increase of any industry. Dashed: all-business average.</p>
         </div>
         <div class="panel-view queue" data-view="queue">
+          <div class="queue__clock"><span>⏱ Running <b id="q-clock">0:00</b></span><button class="btn btn--go btn--sm" id="q-restart">Restart</button></div>
           <canvas id="queue-canvas" width="640" height="250" aria-label="Animated checkout queue: AI drafts arrive on a belt and wait for checkers"></canvas>
           <div class="queue__stats">
             <div class="stat"><b id="q-done">0</b><span>finished</span></div>
@@ -155,9 +156,9 @@
 
   <div class="steps">
     <div class="step" data-view="adoption"><p>AI use among Australian financial and insurance businesses jumped from <strong>1% to 24%</strong> between 2021–22 and 2024–25, the fastest rise of any industry and double the all-business average <span class="cite">(ABS 2026a)</span>. The Commonwealth Bank, first in Asia-Pacific for AI maturity, is training its engineers in AI coding <span class="cite">(Australian Broker 2026)</span>.</p></div>
-    <div class="step" data-view="queue" data-preset="software"><p>AI agents now draft credit assessments, statements of advice and compliance reports, and senior, accountable staff must check each against duties such as responsible lending. Even in an AI developer's own data, most use is augmentation, with people working alongside AI rather than handing tasks over <span class="cite">(Anthropic 2025)</span>. Finished output can grow only as fast as <a class="term" tabindex="0" data-def="How much checking people (and AI checkers) can do. When drafts outrun it, a backlog forms.">checking capacity</a>. <strong>Try it:</strong> raise the AI boost and watch the queue.</p></div>
+    <div class="step" data-view="queue" data-preset="software"><p>AI agents now draft credit assessments, statements of advice and compliance reports, and senior, accountable staff must check each against duties such as responsible lending. Even in an AI developer's own data, most use is augmentation, with people working alongside AI rather than handing tasks over <span class="cite">(Anthropic 2025)</span>. Finished output can grow only as fast as <a class="term" tabindex="0" data-def="How much checking people (and AI checkers) can do. When drafts outrun it, a backlog forms.">checking capacity</a>. <strong class="try">▶ Try it:</strong> raise the AI boost and watch the queue.</p></div>
     <div class="step" data-view="queue" data-preset="finance"><p>Finance goes further than software. In Chen and Stratton's model, checking per draft rises with the cost of an undetected error, and in finance that cost is huge: six major institutions paid or offered <strong>$4.7 billion</strong> in <a class="term" tabindex="0" data-def="Paying customers back after a firm gets something wrong, such as charging fees for advice it never gave.">remediation</a> for fees charged for no service and non-compliant advice <span class="cite">(Australian Broker 2023)</span>. Stricter checks make the bottleneck bigger here.</p></div>
-    <div class="step" data-view="queue" data-preset="aicheck"><p>The regulator sees the gap: of 14 licensees planning to expand AI, <strong>only one</strong> upgraded its governance first <span class="cite">(ASIC 2024)</span>. </p><p><strong>Now try letting AI do the checking.</strong> Push it past 60%.</p></div>
+    <div class="step" data-view="queue" data-preset="aicheck"><p>The regulator sees the gap: of 14 licensees planning to expand AI, <strong>only one</strong> upgraded its governance first <span class="cite">(ASIC 2024)</span>. </p><p><strong class="try">▶ Now try letting AI do the checking.</strong> Push it past 60%.</p></div>
   </div>
 </section>
 
@@ -166,6 +167,7 @@
   <h2 class="claim"><span class="fk">F4 Three scenarios to 2030</span>Drafts rise 10% in every future. What differs is how much gets checked.</h2>
   <div class="prose"><p>The model starts from today's sector: 552,900 workers <span class="cite">(Jobs and Skills Australia 2025)</span> and AI use at 24% of firms <span class="cite">(ABS 2026a)</span>, rising to 72–80% by 2030. AI can draft or assist with about 44% of work hours <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span> and lifts output on that work by 30% <span class="cite">(Chen &amp; Stratton 2026)</span>. The baseline is today's trends continuing; the upside is what happens if checking goes right; the downside, if it goes wrong.</p></div>
 
+  <p class="hint"><span class="tag-play">▶ Try it</span> Pick a future and watch all four charts change.</p>
   <div class="switcher" role="group" aria-label="Choose a scenario">
     <button class="btn" data-scenario="baseline" aria-pressed="true"><span class="key">B</span>Baseline: the review backlog</button>
     <button class="btn" data-scenario="upside" aria-pressed="false"><span class="key">U</span>Upside: verification catches up</button>
@@ -198,7 +200,7 @@
   </div>
 
   <div class="panel dial" style="grid-column:1/-1;position:static">
-    <div class="panel__bar"><b>Policy dial</b><span>starting from the baseline</span></div>
+    <div class="panel__bar"><b>Policy dial</b><span class="tag-play">▶ Spend 3 credits</span></div>
     <div class="panel__body dial__grid">
       <div>
         <p class="credits">Policy credits: <b id="credits-left">3</b> left <span id="credit-pips"></span></p>
@@ -212,7 +214,7 @@
   </div>
 
   <div class="panel" style="grid-column:1/-1;position:static">
-    <div class="panel__bar"><b>You're the regulator</b><span>5 decisions, 2026 to 2030</span></div>
+    <div class="panel__bar"><b>You're the regulator</b><span class="tag-play">▶ Make 5 decisions</span></div>
     <div class="panel__body reg" id="reg">
       <div class="reg__grid">
         <div>
@@ -242,7 +244,7 @@
   </div>
   <div class="panel-wrap">
     <div class="panel">
-      <div class="panel__bar"><b>Show the maths</b><span>change the assumptions</span></div>
+      <div class="panel__bar"><b>Show the maths</b><span class="tag-play">▶ Drag the sliders</span></div>
       <div class="panel__body" id="assume">
         <div class="ctrl"><label for="a-fin">Finance checking multiplier</label><output id="a-fin-o"></output><input type="range" id="a-fin" min="1" max="2" step="0.1"></div>
         <div class="ctrl"><label for="a-exp">Share of work AI can draft</label><output id="a-exp-o"></output><input type="range" id="a-exp" min="0.3" max="0.6" step="0.02"></div>

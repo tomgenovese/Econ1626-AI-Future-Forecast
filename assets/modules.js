@@ -22,7 +22,7 @@
     $$(".panel-view", sec).forEach(v => v.classList.toggle("is-on", v.dataset.view === name));
     if (sec.id === "finance") {
       $("#fin-title").textContent = name === "queue" ? "The checkout queue" : "Businesses using AI, 2024–25";
-      $("#fin-src").textContent = name === "queue" ? "live simulation" : "ABS";
+      $("#fin-src").innerHTML = name === "queue" ? '<span class="tag-play">▶ Drag the sliders</span>' : "ABS";
       Queue.setVisible(name === "queue");
     }
   }
@@ -84,6 +84,7 @@
     function readOuts() { Object.keys(ctrls).forEach(k => { el(`q-${k}-o`).textContent = outs[k](val(k)); }); }
     Object.values(ctrls).forEach(c => c.addEventListener("input", () => { readOuts(); syncBooths(); }));
 
+    el("q-restart").addEventListener("click", () => { reset(); syncBooths(); draw(); });
     function preset(name) {
       const p = PRESETS[name]; if (!p) return;
       Object.entries(p).forEach(([k, v]) => { ctrls[k].value = v; });
@@ -165,6 +166,8 @@
       el("q-rate").textContent = Math.round(BASE_RATE * (1 + val("speed") / 100) * 60);
       el("q-slip").textContent = S.slipTotal;
       el("q-alert").classList.toggle("is-on", S.slips.length >= 5);
+      const secs = Math.floor(S.t / SIM_SPEED);
+      el("q-clock").textContent = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`;
     }
     function loop(ts) {
       const dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
@@ -411,7 +414,18 @@
     render();
   }
 
+  function initAffordances() {
+    $$(".panel").forEach(p => {
+      if (!p.querySelector(".tag-play, input[type=range], .lever, #game, #reg")) return;
+      p.classList.add("is-interactive");
+      const touch = () => p.classList.add("touched");
+      p.addEventListener("pointerdown", touch, { once: true });
+      p.addEventListener("keydown", touch, { once: true });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
+    initAffordances();
     initSteps(); initGuess(); initPolicy(); initAssume(); initGame(); initRegulator();
   });
 })();

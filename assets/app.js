@@ -83,7 +83,7 @@
     const svg = mk("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": ariaLabel });
     // grid + y ticks
     const g = mk("g", { class: "grid" }, svg);
-    for (let v = lo; v <= hi + step / 2; v += step) {
+    for (let v = Math.ceil(lo / step - 1e-9) * step; v <= hi + 1e-9; v += step) {
       mk("line", { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g);
       const t = mk("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }, svg);
       t.textContent = fmt(v);
