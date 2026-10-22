@@ -14,11 +14,11 @@ This essay argues that the gap is not just a matter of time. It is a bottleneck.
 
 My forecast is that by 2030, AI will lift the *volume* of work produced in Australian financial services far faster than it lifts *finished, compliant output*. Gains at the task level will be large, measured gains in sector productivity modest, and labour will shift toward review rather than disappear, unless verification capacity is deliberately built. Finance is where this constraint bites hardest, because an undetected error there costs more than almost anywhere else.
 
-I use 2030 as the horizon because it is long enough for AI agents to spread through banks, insurers and super funds, but short enough that regulation, training pipelines and review practices will still be catching up.
+I use 2030 because it gives AI agents time to spread through banks, insurers and super funds while regulation and review practices are still catching up.
 
 ## 2. What happened in software
 
-Software engineering is where AI agents arrived first and hardest, which makes it a preview of what is coming for other knowledge work. The clearest evidence comes from Chen and Stratton (2026), who tracked about 726,000 workers across 718 firms and compared firms before and after they adopted AI coding agents.
+Software is where AI agents arrived first, which makes it a preview for other knowledge work. The clearest evidence comes from Chen and Stratton (2026), who tracked about 726,000 workers across 718 firms before and after they adopted AI coding agents.
 
 The agents worked. Lines of code per worker rose 30%, commits 20% and pull requests (packages of code submitted for review) 23%. But finished output did not follow. The number of completed work items barely moved, and the estimates rule out any increase larger than 12%. At most, then, around 0.4 of the coding gain reached the final product.
 
@@ -32,7 +32,7 @@ Chen and Stratton's model explains why. AI raises the *volume* of draft work, so
 
 ## 3. Why finance will bottleneck harder
 
-Financial services is the next industry in line. AI use among Australian financial and insurance businesses jumped from 1% in 2021–22 to 24% in 2024–25, the fastest rise of any industry and double the all-business average of 12% (ABS 2026a). Banks are also large software employers in their own right: the Commonwealth Bank ranks first in Asia-Pacific for AI maturity and is training its engineers in AI coding (Australian Broker 2026). The software bottleneck is arriving in finance directly.
+Financial services is the next industry in line. AI use among Australian financial and insurance businesses jumped from 1% in 2021–22 to 24% in 2024–25, the fastest rise of any industry and double the all-business average of 12% (ABS 2026a). Banks are also large software employers in their own right: the Commonwealth Bank ranks first in Asia-Pacific for AI maturity and is training its engineers in AI coding (Australian Broker 2026).
 
 [CHART: AI adoption by industry]
 
@@ -42,19 +42,19 @@ Here the finance case goes further than the software evidence. In Chen and Strat
 
 The regulator's own evidence points the same way. ASIC reviewed 624 AI use cases across 23 licensees and found that adoption is outrunning governance: of the 14 licensees planning to expand AI, only one had upgraded its governance first (ASIC 2024). Generative AI made up 5% of use cases in production but 22% of those in development, so the larger wave of generated drafts is still to come.
 
-The structural consequence is concentration. Firms with deep review capacity, such as the big four banks, can absorb more AI output, so the gap between them and smaller lenders is likely to widen.
+The likely structural result is concentration: firms with deep review capacity, such as the big four banks, can absorb more AI output than smaller lenders.
 
 ## 4. Three scenarios to 2030
 
-The scenarios start from today's sector: 552,900 workers, 3.8% of Australian employment (Jobs and Skills Australia 2025), with output up 4.8% over the year to June 2026 (ABS 2026b). They differ on two things: how fast checking capacity grows, and whether the quality of AI output improves. The summary number for each is its *pass-through rate*, the share of AI's task-level gains that reaches finished output. Assuming AI lifts output per worker in exposed tasks by about 30% by 2030, in line with the software evidence, each scenario turns that into a different gain in finished output. [MODEL: all scenario figures to be confirmed]
+The scenarios start from today's sector: 552,900 workers, 3.8% of Australian employment (Jobs and Skills Australia 2025), with output up 4.8% over the year to June 2026 (ABS 2026b). They differ on two things: how fast checking capacity grows, and whether the quality of AI output improves. The summary number for each is its *pass-through rate*, the share of AI's task-level gains that reaches finished output. Each scenario applies its rate to a 30% task-level gain by 2030, in line with the software evidence. [MODEL: all scenario figures to be confirmed]
 
 [INTERACTIVE: scenario switcher]
 
 **Baseline: the review backlog.** AI agents spread across most large financial firms by about 2028, but senior reviewers remain scarce and slow to retrain. Pass-through stays near the software level of 0.3 to 0.4, so the 30% task gain becomes a finished-output gain of roughly 10% [MODEL]. Jobs shift toward review and assurance with little net loss, but graduate hiring softens. Signposts: longer approval times and a rising share of staff in assurance roles.
 
-**Upside: verification catches up.** Firms invest in automated testing and checking and redesign their workflows, while regulators set clear expectations for checking AI output. Better AI also means fewer errors per draft, so each one needs less review. Pass-through rises toward 0.7, a finished-output gain of about 20% [MODEL], and shared checking tools let smaller firms keep up. Trigger: ASIC and APRA issue AI assurance guidance under their existing powers.
+**Upside: verification catches up.** Firms invest in automated checking and redesign workflows, while regulators set clear expectations for checking AI output. Better AI also means fewer errors per draft, so each one needs less review. Pass-through rises toward 0.7, a finished-output gain of about 20% [MODEL], and shared checking tools let smaller firms keep up. Trigger: ASIC and APRA issue AI assurance guidance under their existing powers.
 
-**Downside: slop accumulation.** Firms ship under-checked output to capture the volume gains. Errors surface as complaints and breaches, followed by remediation and enforcement. Meanwhile, junior roles are cut because AI seems to do their work, which shrinks the pool of future senior reviewers. By 2030 the bottleneck is structural, and finished output is flat or lower once remediation costs are counted [MODEL]. Trigger: a major AI-caused incident brings the government's paused mandatory guardrails back as a blunt fix. The warning signs are already visible: one industry survey found 72% of Australian financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026).
+**Downside: slop accumulation.** Firms ship under-checked output to capture the volume gains. Errors surface as breaches, followed by remediation and enforcement. Junior roles are cut because AI seems to do their work, shrinking the pool of future senior reviewers. By 2030 the bottleneck is structural, and finished output is flat or lower once remediation costs are counted [MODEL]. Trigger: a major AI-caused incident brings the government's paused mandatory guardrails back as a blunt fix. The warning signs are already visible: one industry survey found 72% of Australian financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026).
 
 **Testing the Industry Week claim.** At Industry Week, Dave Lemphers of Maincode argued that AI will change work profoundly, but that the opportunities it creates will outweigh what it displaces (Lemphers 2026). He has elsewhere described AI as "a productivity lift for Australian businesses" (Lemphers 2025). The evidence here supports his view on jobs, since the software firms that adopted agents saw no fall in employment. But it qualifies his view on productivity. A lift in tasks is not a lift in output: on the software evidence, less than half of the gain gets through. Lemphers' optimism holds in full only in the upside scenario, which makes the investment in checking capacity the hinge between his forecast and the baseline.
 
@@ -62,21 +62,21 @@ The scenarios start from today's sector: 552,900 workers, 3.8% of Australian emp
 
 Australia has chosen not to pass a dedicated AI law. The National AI Plan put the proposed mandatory guardrails "on hold" and left AI risk to existing laws and regulators, supported by a new AI Safety Institute (Department of Industry, Science and Resources 2025). The Productivity Commission agreed that AI-specific regulation should be a last resort, and called instead for gap analyses of existing frameworks (Productivity Commission 2025).
 
-I accept that approach, but argue that in finance the gap is already clear: no one is responsible for checking AI-generated output at scale. ASIC's finding that only one in 14 expanding licensees upgraded its governance first (ASIC 2024) is the gap analysis the Commission asked for. The policy goal should be to move the sector from the baseline to the upside scenario, using instruments that already exist.
+I accept that approach, but in finance the gap is already visible: checking capacity is not keeping pace with AI output. ASIC's finding that only one in 14 expanding licensees upgraded its governance first (ASIC 2024) is the gap analysis the Commission asked for. The policy goal should be to move the sector from the baseline to the upside scenario, using instruments that already exist.
 
 [INTERACTIVE: policy dial]
 
 | Lever | Who acts | What it fixes | Trade-off | What to measure |
 | --- | --- | --- | --- | --- |
-| Guidance on checking AI-generated output | ASIC, APRA | Sets the standard firms must meet | Mandatory human sign-off on everything would *deepen* the bottleneck | AI-related breach reports; approval times |
-| Build checking capacity | Firms, supported by training incentives | More drafts to check (volume) | Costs land before gains appear | Review times; share of staff in assurance |
-| Protect the junior pipeline | Firms, with government support for graduate review roles | Future supply of senior reviewers | Short-run cost while juniors look replaceable | Graduate intake; entry-level vacancies |
-| Fund shared verification tools | Government with industry | Error-prone drafts (quality) | Public money for private benefit | Error and rework rates |
-| Measure finished output, not drafts | Firms, ABS | Stops gains being misread | Harder to measure | Adoption of finished-output metrics |
+| Guidance on checking AI output | ASIC, APRA | Sets the standard | Mandatory sign-off on everything would *deepen* the bottleneck | AI-related breaches; approval times |
+| Build checking capacity | Firms, with training incentives | Volume of drafts | Costs come before gains | Review times; assurance staff share |
+| Protect the junior pipeline | Firms and government | Future senior reviewers | Short-run cost | Graduate intake |
+| Fund shared verification tools | Government and industry | Quality of drafts | Public money, private benefit | Error and rework rates |
+| Measure finished output, not drafts | Firms, ABS | Misread gains | Harder to measure | Finished-output metrics used |
 
-The most natural home for the first lever is APRA's operational risk standard, CPS 230, in force since July 2025. It already requires banks, insurers and super funds to define critical operations, manage material service providers and report incidents (Brightlaw 2025). It does not mention AI, but AI systems that support critical operations would sit within its scope.
+The natural home for the first lever is APRA's operational risk standard, CPS 230, in force since July 2025, which already requires banks, insurers and super funds to define critical operations, manage service providers and report incidents (Brightlaw 2025). It does not mention AI, but AI that supports critical operations would fall within its scope.
 
-**Extending the Industry Week claim.** Lemphers warns that without local capability Australia is "exposed to... opaque black-box systems" (Lemphers 2025). He frames this as a sovereignty problem, but it is also a *checking* problem. A model a firm cannot inspect is harder to verify, and 30% of the AI use cases ASIC reviewed relied on models built by third parties (ASIC 2024). Transparent, auditable models, whether built locally or required by contract, lower the cost of checking each draft. That turns his argument into a policy lever: auditability should count as part of AI assurance, because it is one of the few things that attacks the quality problem directly.
+**Extending the Industry Week claim.** Lemphers warns that without local capability Australia is "exposed to... opaque black-box systems" (Lemphers 2025). He frames this as a sovereignty problem, but it is also a *checking* problem. A model a firm cannot inspect is harder to verify, and 30% of the AI use cases ASIC reviewed relied on models built by third parties (ASIC 2024). Transparent, auditable models, whether built locally or required by contract, lower the cost of checking each draft. So auditability should count as part of AI assurance: it is one of the few levers that tackles the quality problem directly.
 
 The EU shows the cost of the opposite approach. Its AI Act classes credit scoring as high-risk, but compliance has already been pushed back from August 2026 to December 2027 (Gibson Dunn 2026). Comprehensive AI laws are slow to implement; targeted guidance through existing regulators can move faster.
 
