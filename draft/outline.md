@@ -140,12 +140,25 @@ Five levers, each tied to a channel. The key split: extra review capacity fixes 
 - [HAVE] **International comparison.** The EU AI Act keeps credit scoring as high-risk, but a provisional agreement in May 2026 pushed the compliance deadline from August 2026 to 2 December 2027 ([Gibson Dunn](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)). Even the strictest regime is struggling to implement on time.
 - [HAVE] Measurement reform comes straight from Chen & Stratton's managerial implications.
 
-## 6. Industry Week engagement (~150 words, woven in)
+## 6. Industry Week engagement: Dave Lemphers (~150 words, woven in)
 
-**Placeholder: waiting on the Week 9 notes.** The brief requires engaging with at least one specific idea, claim or prediction from a Week 9 speaker. It must be attributed, then tested against our evidence, extended into a mechanism or scenario, or critically pushed back on. A name-drop fails.
+**Speaker: Dave Lemphers (Maincode), the only AI speaker at Week 9.** The other three speakers (Fong, Bowler, Renden) covered blockchain and digital assets, which is off-thesis.
 
-- If the speaker is optimistic about AI productivity, test the claim against the Harvard pass-through evidence.
-- If they flag risk or governance, extend it into the downside scenario or a policy lever.
+**The claim.** At Industry Week, Lemphers argued that AI will change work profoundly, but that the opportunities it creates will outweigh what it displaces. A classmate who attended confirmed the gist. Use it as a **paraphrase, no quotation marks**, cited to the presentation.
+
+**Published backing, which can be quoted directly.** [Lemphers (2025), Forbes Australia](https://www.forbes.com.au/news/innovation/the-sovereign-ai-race-is-on-and-australia-cant-afford-to-sit-it-out/): AI is "first and foremost an economic opportunity"; sovereign AI "becomes a jobs engine, a productivity lift for Australian businesses"; it should be "embedded in key sectors like health, finance, energy"; without local capability Australia is "exposed to... opaque black-box systems".
+
+**How we engage (test, then extend):**
+
+1. **Test it.** His optimism assumes AI's task gains become a productivity lift. Chen & Stratton show that pass-through is at most about 0.4 when checking is the bottleneck. So his claim holds only in our *upside* scenario, where verification capacity is built. This makes his view the hinge between baseline and upside.
+2. **Extend it.** His worry about "opaque black-box systems" is really a *verification* problem. ASIC REP 798 found 30% of finance AI use cases rely on third-party models, which firms find harder to check. So transparent, auditable models lower the cost of checking. This becomes a lever in Section 5 and a driver of the upside scenario.
+
+**Placement:** woven into Sections 4 and 5, not a stand-alone box.
+
+**References (RMIT Harvard):**
+
+- Lemphers, D 2026, *AI and the future of work* [Industry Week presentation], ECON1626, RMIT University, Melbourne, 23 September. (Title is descriptive; swap in the official one if Canvas lists it.)
+- Lemphers, D 2025, ''If we don't build our own stack, we become someone else's customer': Australia's AI warning', *Forbes Australia*, 22 September.
 
 ## 7. Uncertainty, methods and data (~200 words)
 
@@ -176,7 +189,7 @@ Five levers, each tied to a channel. The key split: extra review capacity fixes 
 - [ ] Demirer, Musolff & Yang (2026); Becker et al. (2025)
 - [ ] Brynjolfsson, Chandar & Chen (2025) entry-level evidence
 - [ ] Original sources for the ASIC $4.7bn release and the Experian survey; primary sources for the National AI Plan and PC final report (replace the news and law-firm summaries)
-- [ ] Industry Week claim (from the Week 9 notes)
+- [x] Industry Week claim: Dave Lemphers. Presented Wednesday 23 September 2026; official talk title optional
 
 ## Sources (so far)
 
