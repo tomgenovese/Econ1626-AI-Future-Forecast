@@ -354,7 +354,64 @@
     });
   }
 
+
+  /* ---------- You're the regulator (5 decisions) ---------- */
+  const DECISIONS = [
+    { y: 2026, q: "A major bank wants AI to draft every home-loan assessment.",
+      o: [["Allow, with human sign-off", p => p], ["Allow, sign-off optional", p => { p.aiShare = p.aiShare.map(v => v + 0.25); p.aiCatch = 0.5; }]] },
+    { y: 2027, q: "Banks propose cutting graduate intake, since AI does junior work.",
+      o: [["Fund apprentice checker roles", p => { p.realloc += 0.15; }], ["Let the market decide", p => { p.realloc = Math.max(0.15, p.realloc - 0.12); }]] },
+    { y: 2028, q: "ASIC could issue guidance on checking AI output.",
+      o: [["Issue guidance now", p => { p.aiShare = p.aiShare.map((v, i) => Math.max(v, [0, 0.04, 0.08, 0.12, 0.15][i])); p.aiCatch = Math.max(p.aiCatch, 0.8); p.realloc += 0.15; }], ["Wait for an incident", p => { p.waited = true; }]] },
+    { y: 2029, q: "Closed AI models are cheaper; open-weight ones can be audited.",
+      o: [["Require auditable models", p => { p.aiCatch = Math.min(0.95, p.aiCatch + 0.15); }], ["Let firms choose", p => p]] },
+    { y: 2030, q: "Treasury asks how to judge AI's success.",
+      o: [["Count finished output", p => { p.measure = "finished"; }], ["Count drafts produced", p => { p.measure = "drafts"; }]] },
+  ];
+  function initRegulator() {
+    const root = $("#reg"); if (!root) return;
+    let i = 0, picks = [];
+    function params() {
+      const p = JSON.parse(JSON.stringify(Model.PRESETS.baseline));
+      p.aiCatch = 0.6;
+      picks.forEach(([d, k]) => DECISIONS[d].o[k][1](p));
+      if (p.waited && p.aiShare.some(v => v > 0.2)) p.clampdownYear = 2029;
+      return p;
+    }
+    function render() {
+      const done = i >= DECISIONS.length;
+      $("#reg-year").textContent = done ? "2030: your result" : `Decision ${i + 1} of 5, ${DECISIONS[i].y}`;
+      $("#reg-q").textContent = done ? "" : DECISIONS[i].q;
+      $("#reg-opts").innerHTML = done ? '<button class="btn" id="reg-again">Start again</button>'
+        : DECISIONS[i].o.map(([t], k) => `<button class="btn" data-k="${k}">${t}</button>`).join("");
+      $("#reg-log").innerHTML = picks.map(([d, k]) => `<li>${DECISIONS[d].y}: ${DECISIONS[d].o[k][0]}</li>`).join("");
+      $$("#reg-opts [data-k]").forEach(b => b.addEventListener("click", () => { picks.push([i, +b.dataset.k]); i++; render(); }));
+      const again = $("#reg-again"); if (again) again.addEventListener("click", () => { i = 0; picks = []; render(); });
+      const p = params(), rows = Model.run(p), r = rows[4];
+      const out = $("#reg-out");
+      const chartHost = document.createElement("div"); chartHost.className = "chart";
+      let head = "";
+      if (done) {
+        const k = r.slippedPer1000 > 9 || r.net < 0.975 ? "downside" : r.passThrough > 0.6 ? "upside" : "baseline";
+        const txt = { downside: "You created the downside: unchecked AI, then a reckoning.", upside: "You created the upside: checking kept pace with AI.", baseline: "You created the baseline: a growing review backlog." }[k];
+        const shown = p.measure === "drafts" ? `Reported gain: ${pctNum((r.drafts - 1) * 100)}, counting drafts.` : `Reported gain: ${pctNum((r.finished - 1) * 100)}, counting finished output.`;
+        head = `<p class="reg__verdict" style="color:${k === "downside" ? "var(--red)" : k === "upside" ? "var(--neon)" : "var(--amber)"}">${txt}</p><p class="panel__note" style="margin:0 0 .5rem">${shown} Net after error costs: ${pctNum((r.net - 1) * 100)}.</p>`;
+      }
+      out.innerHTML = head; out.appendChild(chartHost);
+      Viz.lineChart(chartHost, {
+        years: Model.YEARS, fmt: Viz.pct, yMin: 0.95, yMax: 1.1,
+        ariaLabel: "Net output under your decisions",
+        series: [
+          { name: "Upside", values: Model.run(Model.PRESETS.upside).map(x => x.net), color: "#5f7d69", dash: "4 4" },
+          { name: "Downside", values: Model.run(Model.PRESETS.downside).map(x => x.net), color: "#5f7d69", dash: "1 4" },
+          { name: "Your path", values: rows.map(x => x.net), color: "var(--neon)", width: 3 },
+        ],
+      });
+    }
+    render();
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    initSteps(); initGuess(); initPolicy(); initAssume(); initGame();
+    initSteps(); initGuess(); initPolicy(); initAssume(); initGame(); initRegulator();
   });
 })();

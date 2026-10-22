@@ -187,7 +187,7 @@
 </section>
 
 <!-- F5 ============================================================ -->
-<section class="section section--policy" id="policy" data-ticker="NATIONAL AI PLAN: GUARDRAILS ON HOLD | PRODUCTIVITY COMMISSION: AI LAW A LAST RESORT | APRA CPS 230 IN FORCE JULY 2025 | EU HIGH-RISK RULES DELAYED TO DEC 2027">
+<section class="section section--policy" id="policy" data-ticker="NATIONAL AI PLAN: GUARDRAILS ON HOLD | PRODUCTIVITY COMMISSION: AI LAW A LAST RESORT | APRA CPS 230 IN FORCE JULY 2025 | ASIC: 1 OF 14 UPGRADED GOVERNANCE FIRST">
   <h2 class="claim"><span class="fk">F5 Policy playbook</span>Don't write an AI law. Make sure someone checks the AI's work.</h2>
 
   <div class="prose">
@@ -213,7 +213,17 @@
 
   <div class="panel" style="grid-column:1/-1;position:static">
     <div class="panel__bar"><b>You're the regulator</b><span>5 decisions, 2026 to 2030</span></div>
-    <div class="panel__body"><div class="module-pending"><b>Building next:</b> one decision per year. See which future you create.</div></div>
+    <div class="panel__body reg" id="reg">
+      <div class="reg__grid">
+        <div>
+          <p class="reg__year" id="reg-year"></p>
+          <p class="reg__q" id="reg-q"></p>
+          <div class="reg__opts" id="reg-opts"></div>
+          <ol class="reg__log" id="reg-log"></ol>
+        </div>
+        <div class="reg__out" id="reg-out"></div>
+      </div>
+    </div>
   </div>
 </section>
 

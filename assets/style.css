@@ -415,3 +415,14 @@ footer { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); pa
 .game__end p { margin: 0 0 0.8rem; }
 .game__end .big { font-family: var(--mono); font-size: 1.6rem; color: var(--neon); line-height: 1.25; }
 @media (max-width: 900px) { .game__row { grid-template-columns: 1fr; } .game__pile { min-height: 3rem; } }
+
+/* You're the regulator */
+.reg__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
+.reg__year { font-family: var(--mono); color: var(--amber); font-size: 0.85rem; margin: 0 0 0.4rem; }
+.reg__q { font-size: 1.15rem; margin: 0 0 1rem; color: var(--ink); }
+.reg__opts { display: grid; gap: 0.5rem; }
+.reg__opts .btn { text-align: left; }
+.reg__log { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); padding-left: 1.2rem; margin: 1.2rem 0 0; }
+.reg__log li { margin-bottom: 0.3rem; }
+.reg__verdict { font-family: var(--mono); font-size: 1.3rem; line-height: 1.3; margin: 0 0 0.5rem; }
+@media (max-width: 900px) { .reg__grid { grid-template-columns: 1fr; } }
