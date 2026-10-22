@@ -156,18 +156,18 @@
   };
   const pct = v => `${v >= 1 ? "+" : ""}${((v - 1) * 100).toFixed(1)}%`;
   const SCEN_COLOR = { baseline: C.amber, upside: C.green, downside: C.red };
-  const CAPTIONS = {
-    baseline: "Agents spread across most large firms, but checking capacity grows at the same slow pace as in the software firms. Drafts rise about 10%; finished output barely moves. Watch: approval times and the share of staff in assurance roles.",
-    upside: "Firms move people into checking twice as fast, and auditable AI handles a growing share of routine checks. Almost every extra draft becomes finished output. Trigger: ASIC and APRA issue guidance on checking AI output.",
-    downside: "Firms let AI rubber-stamp AI. Output looks strong at first, then errors surface, remediation bills arrive and a 2029 clampdown re-tightens checking. Junior cuts shrink future checking capacity. Watch: AI-related breach reports and graduate intake.",
+  const CARDS = {
+    baseline: ["Baseline: the review backlog", "Agents spread across most large firms by about 2028, but senior reviewers stay scarce. Firms move staff into checking at the software firms' pace, yet each finance draft needs more checking. Pass-through falls to 0.12, against 0.20 in software: drafts rise 9.5% while finished output rises just 1.1%. After error costs the net gain is roughly zero, and the backlog grows every year. Watch: approval times and assurance hiring."],
+    upside: ["Upside: verification catches up", "Firms invest in automated checking and redesign workflows, and regulators set clear expectations for checking AI output. Checking capacity keeps pace and auditable AI handles routine checks, so almost every extra draft gets through: finished output rises 10.6%, about 8% after error costs. Trigger: ASIC and APRA issue AI assurance guidance under existing powers."],
+    downside: ["Downside: slop accumulation", "Firms let AI rubber-stamp AI. Output looks strong at first, 4% higher in 2026, because unchecked drafts ship. Then errors surface as breaches and remediation, and junior roles are cut, shrinking future checking capacity. By 2029 net output is 3.5% below a world without AI. Trigger: an AI-caused incident revives the paused mandatory guardrails. Warning sign: 72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026)."],
   };
 
   function renderScenario(key) {
     const rows = Model.run(Model.PRESETS[key]);
     const years = Model.YEARS;
     document.querySelectorAll("[data-scenario]").forEach(b => b.setAttribute("aria-pressed", b.dataset.scenario === key ? "true" : "false"));
-    const cap = document.getElementById("scenario-caption");
-    if (cap) cap.textContent = CAPTIONS[key];
+    const card = document.getElementById("scenario-card");
+    if (card) { card.dataset.k = key; card.innerHTML = `<h3>${CARDS[key][0]}</h3><p>${CARDS[key][1]}</p>`; }
 
     lineChart(document.getElementById("chart-drafts"), {
       years, fmt: pct, yMin: 1, yMax: 1.12,
@@ -250,13 +250,22 @@
       const yy = m.t + i * rowH;
       const t = mk("text", { x: m.l - 10, y: yy + 16, "text-anchor": "end", class: kind === "ship" ? "lbl" : "" }, svg);
       t.textContent = name;
-      mk("rect", { x: m.l, y: yy + 5, width: (v / 50) * iw, height: 14, rx: 2, fill: col[kind],
-        "stroke-dasharray": kind === "ship" ? "4 3" : "none" }, svg);
-      const vt = mk("text", { x: m.l + (v / 50) * iw + 6, y: yy + 16, class: kind === "ship" ? "lbl" : "" }, svg);
+      const g = mk("g", { "data-kind": kind, class: "hv" }, svg);
+      g.appendChild(t);
+      mk("rect", { x: m.l, y: yy + 5, width: (v / 50) * iw, height: 14, rx: 2, fill: col[kind] }, g);
+      const vt = mk("text", { x: m.l + (v / 50) * iw + 6, y: yy + 16, class: kind === "ship" ? "lbl" : "" }, g);
       vt.textContent = (kind === "ship" ? "≤ " : "+") + v + "%";
     });
     host.appendChild(svg);
   }
+
+  window.Viz = { lineChart, pct, mk, SCEN_COLOR, C };
+  window.highlightHarvard = kind => {
+    document.querySelectorAll("#chart-harvard .hv").forEach(g => {
+      g.style.opacity = kind === "all" || g.dataset.kind === kind ? 1 : 0.22;
+      g.style.transition = "opacity .3s";
+    });
+  };
 
   document.addEventListener("DOMContentLoaded", () => {
     boot();

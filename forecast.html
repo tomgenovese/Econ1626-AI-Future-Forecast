@@ -32,162 +32,197 @@
 <section class="hero" id="top" data-ticker="AUSTRALIAN FINANCIAL SERVICES | FORECAST HORIZON 2030 | 552,900 WORKERS | AI USE IN FINANCE ▲ 1% → 24%">
   <p class="hero__prompt">&gt; forecast --sector financial-services --region AU --to 2030</p>
   <h1>Generation is cheap. Verification is scarce.<span class="cursor"></span></h1>
-  <p class="hero__dek">AI is making Australian finance produce far more work. Very little of it is getting finished. This is a forecast of why, and what to do about it.</p>
+  <p class="hero__dek">AI is helping Australian finance produce far more work. Very little more of it is getting finished. Scroll to see why, and what to do about it.</p>
   <p class="hero__meta">ECON1626 Assessment 3, RMIT University. Tom Genovese, October 2026.</p>
 </section>
 
-<!-- F1 -->
-<section class="section" id="thesis" data-ticker="AI GDP FORECAST ▲ $115BN/YR BY 2030 | PRODUCTIVITY COMMISSION ▲ $116BN OVER A DECADE | GDP PER HOUR WORKED ▼ 0.2% | THE GAP IS THE STORY">
-  <div class="prose">
-    <h2><span class="fk">F1</span>The productivity puzzle</h2>
-    <p>In 2023, Microsoft and the Tech Council of Australia estimated that generative AI could add up to $115 billion a year to the Australian economy by 2030 <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span>. The Productivity Commission's final report on data and digital technology expects multifactor productivity gains above 2.3% over the next decade, worth about $116 billion <span class="cite">(Productivity Commission 2025)</span>. Yet in the year to June 2026, Australia's GDP per hour worked fell 0.2% <span class="cite">(ABS 2026b)</span>. AI is everywhere except in the productivity statistics.</p>
-    <p>This essay argues that the gap is not just a matter of time. It is a bottleneck. AI makes producing work cheap, but it does not make checking that work cheap. Production is a chain of complementary tasks, and when one link speeds up, the slowest remaining link sets the pace <span class="cite">(Kremer 1993; Jones &amp; Tonetti 2026)</span>. In knowledge work, that slowest link is increasingly human <a class="term" tabindex="0" data-def="Checking AI-made work before it is used: reviewing code, approving a loan assessment, signing off advice.">verification</a>.</p>
-    <p>My forecast is that by 2030, AI will lift the <em>volume</em> of work produced in Australian financial services far faster than it lifts <em>finished, compliant output</em>. Gains at the task level will be large, measured gains in sector productivity modest, and labour will shift toward review rather than disappear, unless verification capacity is deliberately built. Finance is where this constraint bites hardest, because an undetected error there costs more than almost anywhere else.</p>
-    <p>I use 2030 because it gives AI agents time to spread through banks, insurers and super funds while regulation and review practices are still catching up.</p>
-  </div>
+<!-- F1 ============================================================ -->
+<section class="section section--steps" id="thesis" data-ticker="AI GDP FORECAST ▲ $115BN/YR BY 2030 | PRODUCTIVITY COMMISSION ▲ $116BN OVER A DECADE | GDP PER HOUR WORKED ▼ 0.2% | THE GAP IS THE STORY">
+  <h2 class="claim"><span class="fk">F1 The productivity puzzle</span>The forecasts say boom. The numbers say flat.</h2>
+
   <div class="panel-wrap">
     <div class="panel">
-      <div class="panel__bar"><b>Guess first</b><span>module 1</span></div>
-      <div class="panel__body"><div class="module-pending"><b>Building next:</b> guess how much finished output rose when code rose 30%, then the reveal and the forecasts-versus-productivity chart.</div></div>
+      <div class="panel__bar"><b>Guess first</b><span>718 firms</span></div>
+      <div class="panel__body guess" id="guess">
+        <p class="guess__q">When firms gave coders AI agents, they wrote 30% more code. How much more finished work did they ship?</p>
+        <div class="ctrl">
+          <label for="guess-in">Your guess</label><output id="guess-out">+20%</output>
+          <input type="range" id="guess-in" min="0" max="30" step="1" value="20">
+        </div>
+        <button class="btn btn--go" id="guess-go">Lock in my guess</button>
+        <div id="guess-result" hidden>
+          <div class="guess__bars">
+            <div class="gbar"><span>Code written</span><div class="track"><div class="fill" data-w="100" style="background:#5f7d69"></div></div><span class="val">+30%</span></div>
+            <div class="gbar"><span>Your guess</span><div class="track"><div class="fill" id="gbar-you" style="background:var(--s-amber)"></div></div><span class="val" id="gval-you"></span></div>
+            <div class="gbar"><span>Actually shipped</span><div class="track"><div class="fill" data-w="40" style="background:var(--s-green)"></div></div><span class="val">≤ +12%</span></div>
+          </div>
+          <p class="guess__msg" id="guess-msg"></p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><p>Microsoft and the Tech Council of Australia say generative AI could add up to <strong>$115 billion a year</strong> to the economy by 2030 <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span>. The Productivity Commission expects productivity gains worth about <strong>$116 billion</strong> over a decade <span class="cite">(Productivity Commission 2025)</span>.</p></div>
+    <div class="step"><p>Yet in the year to June 2026, Australia's GDP per hour worked <strong>fell 0.2%</strong> <span class="cite">(ABS 2026b)</span>. AI is everywhere except in the productivity statistics.</p></div>
+    <div class="step"><p>The gap is not just a matter of time. It is a bottleneck. AI makes producing work cheap, but not checking it. When one link in a chain of tasks speeds up, the slowest remaining link sets the pace <span class="cite">(Kremer 1993; Jones &amp; Tonetti 2026)</span>. In knowledge work, that link is human <a class="term" tabindex="0" data-def="Checking AI-made work before it is used: reviewing code, approving a loan assessment, signing off advice.">verification</a>.</p></div>
+    <div class="step"><p><strong>My forecast:</strong> by 2030, AI will lift the volume of work in Australian financial services far faster than finished, compliant output, unless checking capacity is deliberately built. Finance is where this bites hardest, because an undetected error costs more there than almost anywhere else.</p><p>I use 2030 because it gives AI agents time to spread while regulation and review practices are still catching up.</p></div>
   </div>
 </section>
 
-<!-- F2 -->
-<section class="section" id="software" data-ticker="LINES OF CODE ▲ +30% | PULL REQUESTS ▲ +23% | FINISHED WORK ▬ ≤ +12% | REVIEW TIME ▲ +49% | CHANGES REQUESTED ▲ 13% → 25%">
-  <div class="prose">
-    <h2><span class="fk">F2</span>What happened in software</h2>
-    <p>Software is where AI agents arrived first, which makes it a preview for other knowledge work. The clearest evidence comes from Chen and Stratton (2026), who tracked about 726,000 workers across 718 firms before and after they adopted AI coding agents.</p>
-    <p>The agents worked. Lines of code per worker rose 30%, commits 20% and pull requests (packages of code submitted for review) 23%. But finished output did not follow. The number of completed work items barely moved, and the estimates rule out any increase larger than 12%. At most, then, around 0.4 of the coding gain reached the final product. That share is the <a class="term" tabindex="0" data-def="The share of AI's extra work that actually becomes finished product. 1 means all of it gets through; 0 means none does.">pass-through</a>.</p>
-    <p>The missing gains piled up in review. After firms adopted agents, the time from submitting code to approving it rose 49%, from about 7 to 10.5 days. The share of submissions sent back for changes nearly doubled, from 13% to about 25%, and reviewers left 35% more comments on each one. Firms responded by moving people into checking: the share of workers doing code review rose 14%, while overall employment did not change.</p>
-    <p>AI review tools have not solved the problem. By March 2026 nearly 80% of the firms had used them, yet only 23% of review comments were written by AI <span class="cite">(Chen &amp; Stratton 2026)</span>. Humans remain the gatekeepers.</p>
-    <p>Chen and Stratton's model explains why. AI raises the <em>volume</em> of draft work, so there is more to check, and it can lower its <em>quality</em>, so each draft needs more checking. Hiring more reviewers fixes the first problem. Only better technology fixes the second. The result is what many workers would recognise as "AI slop": a growing pile of unchecked output on human desks, and no more finished products leaving the building.</p>
-  </div>
+<!-- F2 ============================================================ -->
+<section class="section section--steps" id="software" data-ticker="LINES OF CODE ▲ +30% | PULL REQUESTS ▲ +23% | FINISHED WORK ▬ ≤ +12% | REVIEW TIME ▲ +49% | CHANGES REQUESTED ▲ 13% → 25%">
+  <h2 class="claim"><span class="fk">F2 What happened in software</span>Coders wrote 30% more. Firms shipped at most 12% more.</h2>
+
   <div class="panel-wrap">
     <div class="panel">
-      <div class="panel__bar"><b>Effect of AI coding agents</b><span>718 firms</span></div>
+      <div class="panel__bar"><b>Effect of AI coding agents</b><span>Chen &amp; Stratton 2026</span></div>
       <div class="panel__body">
         <div class="chart" id="chart-harvard"></div>
-        <p class="panel__note">Grey: writing code. Green: finished work (upper bound of the estimate). Amber: checking. Source: Chen &amp; Stratton (2026).</p>
+        <p class="panel__note">Grey: writing code. Green: finished work (upper bound). Amber: checking.</p>
       </div>
     </div>
-    <div class="panel" style="margin-top:1rem;position:static">
-      <div class="panel__bar"><b>Approve the drafts</b><span>module 2</span></div>
-      <div class="panel__body"><div class="module-pending"><b>Building next:</b> a 60-second game. Drafts flood your queue, first code, then finance documents. Try to keep up.</div></div>
-    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step" data-hl="write"><p>Software is where AI agents arrived first, so it previews other knowledge work. Chen and Stratton (2026) tracked about 726,000 workers in 718 firms before and after they adopted AI coding agents. Lines of code rose <strong>30%</strong>, commits 20% and pull requests 23%.</p></div>
+    <div class="step" data-hl="ship"><p>Finished work barely moved: the estimates rule out a rise larger than <strong>12%</strong>. At most, around 0.4 of the coding gain reached the final product. That share is the <a class="term" tabindex="0" data-def="The share of AI's extra work that actually becomes finished product. 1 means all of it gets through; 0 means none does.">pass-through</a>.</p></div>
+    <div class="step" data-hl="review"><p>The rest piled up in review. Time to approve code rose <strong>49%</strong>, the share sent back for changes nearly doubled from 13% to about 25%, and comments per submission rose 35%. Firms moved people into checking, up 14%, while overall employment did not change.</p></div>
+    <div class="step" data-hl="all"><p>AI review tools have not solved it: nearly 80% of the firms used them, yet AI wrote only 23% of review comments <span class="cite">(Chen &amp; Stratton 2026)</span>. AI raises the volume of drafts and can lower their quality. More reviewers fix the first problem; only better technology fixes the second.</p><p>The result is "AI slop": unchecked output piling up, and no more finished products leaving the building.</p></div>
+  </div>
+
+  <div class="panel" style="grid-column:1/-1;position:static">
+    <div class="panel__bar"><b>Approve the drafts</b><span>60 seconds</span></div>
+    <div class="panel__body"><div class="module-pending"><b>Building next:</b> drafts flood your queue, first code, then finance documents. Try to keep up.</div></div>
   </div>
 </section>
 
-<!-- F3 -->
-<section class="section" id="finance" data-ticker="FINANCE AI USE ▲ 1% → 24% | ALL BUSINESSES 12% | ASIC: 1 OF 14 UPGRADED GOVERNANCE FIRST | REMEDIATION PAID $4.7BN | THIRD-PARTY MODELS 30%">
-  <div class="prose">
-    <h2><span class="fk">F3</span>Why finance will bottleneck harder</h2>
-    <p>Financial services is the next industry in line. AI use among Australian financial and insurance businesses jumped from 1% in 2021–22 to 24% in 2024–25, the fastest rise of any industry and double the all-business average of 12% <span class="cite">(ABS 2026a)</span>. Banks are also large software employers in their own right: the Commonwealth Bank ranks first in Asia-Pacific for AI maturity and is training its engineers in AI coding <span class="cite">(Australian Broker 2026)</span>.</p>
-    <p>The mechanism runs the same way. AI agents draft credit assessments, statements of advice, compliance reports and customer responses, so there are more drafts per worker. But every draft must be checked against legal duties such as responsible lending, the best-interests duty and anti-money-laundering rules, and the checking is done by senior, accountable staff. Finished, compliant output can grow only as fast as that <a class="term" tabindex="0" data-def="How much checking people (and AI checkers) can do in a year. When drafts outrun it, a backlog forms.">checking capacity</a> allows.</p>
-    <p>Here the finance case goes further than the software evidence. In Chen and Stratton's model, the right amount of checking per draft rises with the cost of an undetected error. In software, a missed bug means a fix and a delay. In finance, it can mean regulatory penalties and customer <a class="term" tabindex="0" data-def="Paying customers back after a firm gets something wrong, such as charging fees for advice it never gave.">remediation</a>: over eight years of remediation, six major institutions paid or offered $4.7 billion in compensation for fees charged for no service and for non-compliant advice <span class="cite">(Australian Broker 2023)</span>. Because errors cost so much, review already takes a larger share of a finance firm's costs, and the model shows the shortfall in finished output grows with that share. The bottleneck should therefore be <em>bigger</em> in finance than in software.</p>
-    <p>The regulator's own evidence points the same way. ASIC reviewed 624 AI use cases across 23 licensees and found that adoption is outrunning governance: of the 14 licensees planning to expand AI, only one had upgraded its governance first <span class="cite">(ASIC 2024)</span>. Generative AI made up 5% of use cases in production but 22% of those in development, so the larger wave of generated drafts is still to come.</p>
-    <p>The likely structural result is concentration: firms with deep review capacity, such as the big four banks, can absorb more AI output than smaller lenders.</p>
-  </div>
+<!-- F3 ============================================================ -->
+<section class="section section--steps" id="finance" data-ticker="FINANCE AI USE ▲ 1% → 24% | ALL BUSINESSES 12% | ASIC: 1 OF 14 UPGRADED GOVERNANCE FIRST | REMEDIATION PAID $4.7BN | THIRD-PARTY MODELS 30%">
+  <h2 class="claim"><span class="fk">F3 Why finance bottlenecks harder</span>Finance is next in the queue, and its checks are stricter.</h2>
+
   <div class="panel-wrap">
     <div class="panel">
-      <div class="panel__bar"><b>Businesses using AI, 2024–25</b><span>ABS</span></div>
+      <div class="panel__bar"><b id="fin-title">Businesses using AI, 2024–25</b><span id="fin-src">ABS</span></div>
       <div class="panel__body">
-        <div class="chart" id="chart-adoption"></div>
-        <p class="panel__note">Finance rose from 1% in 2021–22, the fastest increase of any industry. Dashed: all-business average. Source: ABS (2026a).</p>
+        <div class="panel-view is-on" data-view="adoption">
+          <div class="chart" id="chart-adoption"></div>
+          <p class="panel__note">Finance rose from 1% in 2021–22, the fastest increase of any industry. Dashed: all-business average.</p>
+        </div>
+        <div class="panel-view queue" data-view="queue">
+          <canvas id="queue-canvas" width="640" height="250" aria-label="Animated checkout queue: AI drafts arrive on a belt and wait for checkers"></canvas>
+          <div class="queue__stats">
+            <div class="stat"><b id="q-done">0</b><span>finished</span></div>
+            <div class="stat warn"><b id="q-wait">0</b><span>waiting</span></div>
+            <div class="stat"><b id="q-rate">0</b><span>arrivals / min</span></div>
+            <div class="stat bad"><b id="q-slip">0</b><span>errors slipped</span></div>
+          </div>
+          <div class="alert" id="q-alert" role="status">⚠ ASIC ENFORCEMENT ACTION: errors are reaching customers</div>
+          <div class="queue__ctrls">
+            <div class="ctrl"><label for="q-speed">AI drafting boost</label><output id="q-speed-o"></output><input type="range" id="q-speed" min="0" max="100" step="5"></div>
+            <div class="ctrl"><label for="q-checkers">Human checkers</label><output id="q-checkers-o"></output><input type="range" id="q-checkers" min="1" max="6" step="1"></div>
+            <div class="ctrl"><label for="q-strict">Checking per draft</label><output id="q-strict-o"></output><input type="range" id="q-strict" min="100" max="200" step="10"></div>
+            <div class="ctrl"><label for="q-ai">AI checking share</label><output id="q-ai-o"></output><input type="range" id="q-ai" min="0" max="80" step="5"></div>
+          </div>
+          <p class="panel__note">Each square is a draft; red ones contain an error. Humans catch 9 in 10 errors. AI checkers catch about 6 in 10 when lightly used, and fewer as they take more of the load, because AI checking AI shares its blind spots.</p>
+        </div>
       </div>
     </div>
-    <div class="panel" style="margin-top:1rem;position:static">
-      <div class="panel__bar"><b>The checkout queue</b><span>module 3</span></div>
-      <div class="panel__body"><div class="module-pending"><b>Building next:</b> drafts on a conveyor belt, checkers at the till. Change AI speed, checkers, error rate and the AI checking share, and watch the queue.</div></div>
-    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step" data-view="adoption"><p>AI use among Australian financial and insurance businesses jumped from <strong>1% to 24%</strong> between 2021–22 and 2024–25, the fastest rise of any industry and double the all-business average <span class="cite">(ABS 2026a)</span>. The Commonwealth Bank ranks first in Asia-Pacific for AI maturity and is training its engineers in AI coding <span class="cite">(Australian Broker 2026)</span>.</p></div>
+    <div class="step" data-view="queue" data-preset="software"><p>AI agents now draft credit assessments, statements of advice and compliance reports. Every draft must be checked against duties such as responsible lending and the best-interests duty, by senior, accountable staff. Finished output can grow only as fast as <a class="term" tabindex="0" data-def="How much checking people (and AI checkers) can do. When drafts outrun it, a backlog forms.">checking capacity</a>. <strong>Try it:</strong> raise the AI boost and watch the queue.</p></div>
+    <div class="step" data-view="queue" data-preset="finance"><p>Finance goes further than software. In Chen and Stratton's model, checking per draft rises with the cost of an undetected error, and in finance that cost is huge: six major institutions paid or offered <strong>$4.7 billion</strong> in <a class="term" tabindex="0" data-def="Paying customers back after a firm gets something wrong, such as charging fees for advice it never gave.">remediation</a> for fees charged for no service and non-compliant advice <span class="cite">(Australian Broker 2023)</span>. Stricter checks make the bottleneck bigger here.</p></div>
+    <div class="step" data-view="queue" data-preset="aicheck"><p>The regulator sees the gap: of 14 licensees planning to expand AI, <strong>only one</strong> upgraded its governance first <span class="cite">(ASIC 2024)</span>. Firms with deep checking capacity, like the big four banks, can absorb more AI output than smaller lenders, so concentration is likely to rise.</p><p><strong>Now try letting AI do the checking.</strong> Push it past 60%.</p></div>
   </div>
 </section>
 
-<!-- F4 -->
+<!-- F4 ============================================================ -->
 <section class="section section--wide" id="scenarios" data-ticker="DRAFTS ▲ ~10% BY 2030 IN EVERY SCENARIO | WHAT DIFFERS IS HOW MUCH GETS CHECKED | BASELINE PASS-THROUGH 0.12 | SOFTWARE 0.20">
-  <div class="prose">
-    <h2><span class="fk">F4</span>Three scenarios to 2030</h2>
-    <p>The scenarios start from today's sector: 552,900 workers, 3.8% of Australian employment <span class="cite">(Jobs and Skills Australia 2025)</span>, with output up 4.8% over the year to June 2026 <span class="cite">(ABS 2026b)</span>. In each, AI use rises from the ABS's 24% of firms toward 72–80% by 2030. AI can draft or assist with about 44% of work hours <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span> and lifts output on that work by 30% <span class="cite">(Chen &amp; Stratton 2026)</span>, so by 2030 the volume of drafts rises about 10% in every scenario. What differs is how much of it gets checked.</p>
-  </div>
+  <h2 class="claim"><span class="fk">F4 Three scenarios to 2030</span>Drafts rise 10% in every future. What differs is how much gets checked.</h2>
+  <div class="prose"><p>The model starts from today's sector: 552,900 workers <span class="cite">(Jobs and Skills Australia 2025)</span> and AI use at 24% of firms <span class="cite">(ABS 2026a)</span>, rising to 72–80% by 2030. AI can draft or assist with about 44% of work hours <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span> and lifts output on that work by 30% <span class="cite">(Chen &amp; Stratton 2026)</span>. Pick a future.</p></div>
 
   <div class="switcher" role="group" aria-label="Choose a scenario">
     <button class="btn" data-scenario="baseline" aria-pressed="true"><span class="key">B</span>Baseline: the review backlog</button>
     <button class="btn" data-scenario="upside" aria-pressed="false"><span class="key">U</span>Upside: verification catches up</button>
     <button class="btn" data-scenario="downside" aria-pressed="false"><span class="key">D</span>Downside: slop accumulation</button>
   </div>
-  <p class="scenario-caption" id="scenario-caption" aria-live="polite"></p>
+  <div class="scenario-card" id="scenario-card" aria-live="polite"></div>
 
   <div class="dash">
     <div class="chart-card"><h3>Drafts vs finished output</h3><p class="sub">Change versus a world without AI</p><div class="chart" id="chart-drafts"></div></div>
     <div class="chart-card"><h3>Backlog of unchecked work</h3><p class="sub">Cumulative, in % of one year's pre-AI output</p><div class="chart" id="chart-backlog"></div></div>
     <div class="chart-card"><h3>Checking and assurance jobs</h3><p class="sub">Total sector jobs stay about flat; this is the share doing checking</p><div class="chart" id="chart-jobs"></div></div>
-    <div class="chart-card"><h3>Net output after error costs</h3><p class="sub">All three scenarios. "All ship" is the assumption behind headline forecasts: every draft becomes output</p><div class="chart" id="chart-net"></div></div>
+    <div class="chart-card"><h3>Net output after error costs</h3><p class="sub">All three futures. "All ship" is the assumption behind headline forecasts: every draft becomes output</p><div class="chart" id="chart-net"></div></div>
   </div>
 
-  <div class="prose" style="margin-top:3rem">
-    <p><strong>Baseline: the review backlog.</strong> AI agents spread across most large financial firms by about 2028, but senior reviewers remain scarce and slow to retrain. Firms move staff into checking at the same pace the software firms did, but in finance each AI draft needs more checking. Pass-through falls to about 0.12, against 0.20 in software: drafts rise 9.5% by 2030 while finished output rises just 1.1%. Once the cost of errors that slip through is counted, the net gain is roughly zero, and a backlog of unchecked work builds every year. Jobs shift toward review and assurance with little net loss, but graduate hiring softens.</p>
-    <p><strong>Upside: verification catches up.</strong> Firms invest in automated checking and redesign workflows, while regulators set clear expectations for checking AI output. Checking capacity keeps pace and auditable AI takes on routine checks, so almost every extra draft gets through: finished output rises about 10.6%, or about 8% after error costs. Trigger: ASIC and APRA issue AI assurance guidance under their existing powers.</p>
-    <p><strong>Downside: slop accumulation.</strong> Firms let AI rubber-stamp AI to capture the volume gains. Output looks strong at first, about 4% higher in 2026, because unchecked drafts ship. Then errors surface as breaches, followed by remediation and enforcement, and junior roles are cut because AI seems to do their work, shrinking the pool of future senior reviewers. By 2029 net output is about 3.5% below a world without AI. Trigger: a major AI-caused incident brings the government's paused mandatory guardrails back as a blunt fix. The warning signs are already visible: one industry survey found 72% of Australian financial institutions use AI agents in underwriting, but only 3% say their data is fully ready <span class="cite">(Australian Broker 2026)</span>.</p>
-    <p><strong>Testing the Industry Week claim.</strong> At Industry Week, Dave Lemphers of Maincode argued that AI will change work profoundly, but that the opportunities it creates will outweigh what it displaces <span class="cite">(Lemphers 2026)</span>. He has elsewhere described AI as "a productivity lift for Australian businesses" <span class="cite">(Lemphers 2025)</span>. The evidence here supports his view on jobs, since the software firms that adopted agents saw no fall in employment. But it qualifies his view on productivity. A lift in tasks is not a lift in output: on the software evidence, less than half of the gain gets through. Lemphers' optimism holds in full only in the upside scenario, which makes the investment in checking capacity the hinge between his forecast and the baseline.</p>
+  <div class="callout">
+    <h3>Testing the Industry Week claim</h3>
+    <p>At Industry Week, Dave Lemphers of Maincode argued that AI will change work profoundly, but that the opportunities it creates will outweigh what it displaces <span class="cite">(Lemphers 2026)</span>; elsewhere he calls AI "a productivity lift for Australian businesses" <span class="cite">(Lemphers 2025)</span>. The evidence supports him on jobs: software firms that adopted agents saw no fall in employment. It qualifies him on productivity: a lift in tasks is not a lift in output. His optimism holds in full only in the upside, which makes investment in checking the hinge between his forecast and the baseline.</p>
   </div>
 </section>
 
-<!-- F5 -->
-<section class="section" id="policy" data-ticker="NATIONAL AI PLAN: GUARDRAILS ON HOLD | PRODUCTIVITY COMMISSION: AI LAW A LAST RESORT | APRA CPS 230 IN FORCE JULY 2025 | EU HIGH-RISK RULES DELAYED TO DEC 2027">
+<!-- F5 ============================================================ -->
+<section class="section section--policy" id="policy" data-ticker="NATIONAL AI PLAN: GUARDRAILS ON HOLD | PRODUCTIVITY COMMISSION: AI LAW A LAST RESORT | APRA CPS 230 IN FORCE JULY 2025 | EU HIGH-RISK RULES DELAYED TO DEC 2027">
+  <h2 class="claim"><span class="fk">F5 Policy playbook</span>Don't write an AI law. Make sure someone checks the AI's work.</h2>
+
   <div class="prose">
-    <h2><span class="fk">F5</span>Policy playbook</h2>
-    <p>Australia has chosen not to pass a dedicated AI law. The National AI Plan put the proposed mandatory guardrails "on hold" and left AI risk to existing laws and regulators, supported by a new AI Safety Institute <span class="cite">(Department of Industry, Science and Resources 2025)</span>. The Productivity Commission agreed that AI-specific regulation should be a last resort, and called instead for gap analyses of existing frameworks <span class="cite">(Productivity Commission 2025)</span>.</p>
-    <p>I accept that approach, but in finance the gap is already visible: checking capacity is not keeping pace with AI output. ASIC's finding that only one in 14 expanding licensees upgraded its governance first <span class="cite">(ASIC 2024)</span> is the gap analysis the Commission asked for. The policy goal should be to move the sector from the baseline to the upside scenario, using instruments that already exist.</p>
-    <table>
-      <thead><tr><th>Lever</th><th>Who acts</th><th>What it fixes</th><th>Trade-off</th><th>What to measure</th></tr></thead>
-      <tbody>
-        <tr><td>Guidance on checking AI output</td><td>ASIC, APRA</td><td>Sets the standard</td><td>Mandatory sign-off on everything would <em>deepen</em> the bottleneck</td><td>AI-related breaches; approval times</td></tr>
-        <tr><td>Build checking capacity</td><td>Firms, with training incentives</td><td>Volume of drafts</td><td>Costs come before gains</td><td>Review times; assurance staff share</td></tr>
-        <tr><td>Protect the junior pipeline</td><td>Firms and government</td><td>Future senior reviewers</td><td>Short-run cost</td><td>Graduate intake</td></tr>
-        <tr><td>Fund shared verification tools</td><td>Government and industry</td><td>Quality of drafts</td><td>Public money, private benefit</td><td>Error and rework rates</td></tr>
-        <tr><td>Measure finished output, not drafts</td><td>Firms, ABS</td><td>Misread gains</td><td>Harder to measure</td><td>Finished-output metrics used</td></tr>
-      </tbody>
-    </table>
-    <p>The natural home for the first lever is APRA's operational risk standard, <a class="term" tabindex="0" data-def="APRA's operational risk standard, in force since July 2025. Banks, insurers and super funds must define critical operations, manage key service providers and report incidents.">CPS 230</a>, in force since July 2025, which already requires banks, insurers and super funds to define critical operations, manage service providers and report incidents <span class="cite">(Brightlaw 2025)</span>. It does not mention AI, but AI that supports critical operations would fall within its scope.</p>
-    <p><strong>Can AI check the AI?</strong> Partly. AI checkers add capacity cheaply, but they tend to share the blind spots of the AI that wrote the draft, and a licensee, not a model, carries legal responsibility for advice and lending decisions. Used as an accountable assistant, AI checking moves the sector toward the upside. Used as a rubber stamp, it is what produces the downside.</p>
-    <p><strong>Extending the Industry Week claim.</strong> Lemphers warns that without local capability Australia is "exposed to... opaque black-box systems" <span class="cite">(Lemphers 2025)</span>. He frames this as a sovereignty problem, but it is also a <em>checking</em> problem. A model a firm cannot inspect is harder to verify, and 30% of the AI use cases ASIC reviewed relied on models built by third parties <span class="cite">(ASIC 2024)</span>. Transparent, auditable models, whether built locally or required by contract, lower the cost of checking each draft. So auditability should count as part of AI assurance: it is one of the few levers that tackles the quality problem directly.</p>
-    <p>The EU shows the cost of the opposite approach. Its AI Act classes credit scoring as high-risk, but compliance has already been pushed back from August 2026 to December 2027 <span class="cite">(Gibson Dunn 2026)</span>. Comprehensive AI laws are slow to implement; targeted guidance through existing regulators can move faster.</p>
+    <p>Australia has chosen not to pass a dedicated AI law: the National AI Plan put mandatory guardrails "on hold" <span class="cite">(Department of Industry, Science and Resources 2025)</span>, and the Productivity Commission calls AI-specific rules a last resort, pending gap analyses <span class="cite">(Productivity Commission 2025)</span>.</p>
+    <p>I accept that, but in finance the gap is already visible. ASIC's one-in-14 finding <span class="cite">(ASIC 2024)</span> is the gap analysis. The goal is to move the sector from baseline to upside with tools that exist, starting with APRA's <a class="term" tabindex="0" data-def="APRA's operational risk standard, in force since July 2025. Banks, insurers and super funds must define critical operations, manage key service providers and report incidents.">CPS 230</a>, which already requires firms to manage critical operations and report incidents <span class="cite">(Brightlaw 2025)</span>.</p>
+    <p><strong>Can AI check the AI?</strong> Partly. AI checkers add capacity cheaply, but share the blind spots of the AI that wrote the draft, and a licensee, not a model, carries legal responsibility. Accountable, AI checking moves the sector toward the upside; as a rubber stamp, it produces the downside.</p>
+    <p><strong>Extending the Industry Week claim.</strong> Lemphers frames "opaque black-box systems" as a sovereignty problem <span class="cite">(Lemphers 2025)</span>. This forecast shows it is also a checking problem, which is why auditable models appear as a lever in the dial.</p>
+    <p>The EU shows the cost of the opposite approach: its AI Act classes credit scoring as high-risk, yet compliance has been pushed back from August 2026 to December 2027 <span class="cite">(Gibson Dunn 2026)</span>.</p>
   </div>
-  <div class="panel-wrap">
-    <div class="panel">
-      <div class="panel__bar"><b>Policy dial</b><span>module 4</span></div>
-      <div class="panel__body"><div class="module-pending"><b>Building next:</b> three policy credits, five levers. Choose which to pull and watch the 2030 outcome change.</div></div>
+
+  <div class="panel dial" style="grid-column:1/-1;position:static">
+    <div class="panel__bar"><b>Policy dial</b><span>starting from the baseline</span></div>
+    <div class="panel__body dial__grid">
+      <div>
+        <p class="credits">Policy credits: <b id="credits-left">3</b> left <span id="credit-pips"></span></p>
+        <div class="levers" id="levers"></div>
+      </div>
+      <div class="dial__out">
+        <div class="chart" id="chart-policy"></div>
+        <dl class="readout" id="policy-readout"></dl>
+      </div>
     </div>
-    <div class="panel" style="margin-top:1rem;position:static">
-      <div class="panel__bar"><b>You're the regulator</b><span>module 5</span></div>
-      <div class="panel__body"><div class="module-pending"><b>Building next:</b> five decisions, one per year from 2026 to 2030. See which scenario you create.</div></div>
-    </div>
+  </div>
+
+  <div class="panel" style="grid-column:1/-1;position:static">
+    <div class="panel__bar"><b>You're the regulator</b><span>5 decisions, 2026 to 2030</span></div>
+    <div class="panel__body"><div class="module-pending"><b>Building next:</b> one decision per year. See which future you create.</div></div>
   </div>
 </section>
 
-<!-- F6 -->
+<!-- F6 ============================================================ -->
 <section class="section" id="methods" data-ticker="METHOD: CALIBRATED SCENARIO MODEL | SOFTWARE CHECK: DRAFTS +30%, CHECKERS +14%, FINISHED +6% | CODE AND DATA IN THE REPOSITORY">
+  <h2 class="claim"><span class="fk">F6 Methods, data and uncertainty</span>Every number here comes from a model you can change.</h2>
   <div class="prose">
-    <h2><span class="fk">F6</span>Methods, data and uncertainty</h2>
-    <p><strong>Method.</strong> The forecast uses a simple scenario model calibrated to Australian data. Each year it compares how much checking the AI-boosted volume of drafts needs with how much checking people and AI checkers can do; whatever cannot be checked becomes backlog, so pass-through is calculated rather than assumed. The model reproduces the software results: with full adoption, drafts rise 30%, checking staff 14% and finished output about 6% <span class="cite">(Chen &amp; Stratton 2026)</span>. It then applies Australian inputs: 2026 employment <span class="cite">(Jobs and Skills Australia 2025)</span>, AI adoption <span class="cite">(ABS 2026a)</span> and the 44% exposure share <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span>. The code, data and every assumption are in the <a href="https://github.com/tomgenovese/econ1626-ai-future-forecast">project repository</a>.</p>
-    <p><strong>Limitations.</strong> Four uncertainties matter most.</p>
-    <ul>
-      <li><em>Transferability.</em> The core evidence comes from software firms, mostly outside Australia. Finance tasks differ, so applying the software calibration here is an assumption, not a measurement.</li>
-      <li><em>Timing.</em> The software estimates cover roughly the first year after adoption. Firms may reorganise around AI over time, as they did with earlier general-purpose technologies <span class="cite">(Brynjolfsson, Rock &amp; Syverson 2018)</span>, which would push outcomes toward the upside.</li>
-      <li><em>Structural breaks.</em> A step-change in AI reliability would shrink the quality problem and invalidate the baseline. A major AI-caused incident could trigger a sudden regulatory response.</li>
-      <li><em>Measurement.</em> Much of what banks and insurers produce is imputed in the national accounts rather than measured directly from sales <span class="cite">(Gordon et al. 2016)</span>. AI's effects, or their absence, will therefore be hard to see in official statistics. Self-reported gains are no substitute: in a CSIRO trial of an AI assistant, 30% of users reported no productivity benefit <span class="cite">(Whittle 2025)</span>.</li>
+    <p>Each year the model compares the checking that AI-boosted drafts need with the checking people and AI can do. What cannot be checked becomes backlog, so pass-through is calculated, not assumed. With full adoption it reproduces the software results: drafts +30%, checking staff +14%, finished output +6% <span class="cite">(Chen &amp; Stratton 2026)</span>. Code, data and every assumption are in the <a href="https://github.com/tomgenovese/econ1626-ai-future-forecast">project repository</a>.</p>
+    <ul class="lim">
+      <li><b>Transferability</b>The core evidence is from software firms, mostly outside Australia. Applying it to finance is an assumption, not a measurement.</li>
+      <li><b>Timing</b>The estimates cover about a year after adoption. Firms may reorganise over time, as with earlier general-purpose technologies <span class="cite">(Brynjolfsson, Rock &amp; Syverson 2018)</span>, pushing outcomes toward the upside.</li>
+      <li><b>Structural breaks</b>A leap in AI reliability would shrink the quality problem; a major AI-caused incident could trigger sudden regulation.</li>
+      <li><b>Measurement</b>Much of finance output is imputed in the national accounts <span class="cite">(Gordon et al. 2016)</span>, so AI's effects will be hard to see. Self-reported gains mislead too: 30% of users in a CSIRO trial reported no benefit <span class="cite">(Whittle 2025)</span>.</li>
     </ul>
-    <p><strong>Use of AI.</strong> I used Claude (Anthropic) to help find and summarise sources, structure the argument, draft text that I then edited, and write the code for the site's charts and interactives. I checked every figure against its original source.</p>
+    <p><strong>Use of AI.</strong> I used Claude (Anthropic) to help find and summarise sources, structure the argument, draft text that I then edited, and write the code for the charts and interactives. I checked every figure against its original source.</p>
   </div>
   <div class="panel-wrap">
     <div class="panel">
-      <div class="panel__bar"><b>Show the maths</b><span>module 6</span></div>
-      <div class="panel__body"><div class="module-pending"><b>Building next:</b> change the model's key assumptions, such as the finance multiplier and the cost of errors, and see how the forecast moves.</div></div>
+      <div class="panel__bar"><b>Show the maths</b><span>change the assumptions</span></div>
+      <div class="panel__body" id="assume">
+        <div class="ctrl"><label for="a-fin">Finance checking multiplier</label><output id="a-fin-o"></output><input type="range" id="a-fin" min="1" max="2" step="0.1"></div>
+        <div class="ctrl"><label for="a-exp">Share of work AI can draft</label><output id="a-exp-o"></output><input type="range" id="a-exp" min="0.3" max="0.6" step="0.02"></div>
+        <div class="ctrl"><label for="a-rem">Cost of each slipped error (drafts)</label><output id="a-rem-o"></output><input type="range" id="a-rem" min="0" max="20" step="1"></div>
+        <table class="assume-table" id="assume-table"></table>
+        <p class="panel__note">2030 results. Defaults: multiplier 1.5, share 0.44, cost 10. <button class="btn" id="a-reset" style="padding:0.2rem 0.5rem;font-size:0.75rem">Reset</button></p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- F7 -->
+<!-- F7 ============================================================ -->
 <section class="section section--wide" id="references" data-ticker="19 SOURCES | RMIT HARVARD | DATA: ABS, JOBS AND SKILLS AUSTRALIA, ASIC, PRODUCTIVITY COMMISSION">
   <div class="prose refs">
     <h2><span class="fk">F7</span>References</h2>
@@ -219,5 +254,6 @@
 
 <script src="assets/model.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/modules.js"></script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 ## How AI will reshape Australian financial services to 2030
 
+*Superseded: the essay now lives in `forecast.html`, restructured into step cards and interactive text (22 Oct 2026). Kept as the Draft 1 record.*
+
 *Draft 1 of the essay text for the web essay, 22 Oct 2026. Figures marked [MODEL] are illustrative until the scenario model is built and must be confirmed. Charts and interactives are marked [CHART] or [INTERACTIVE] where they will sit on the site.*
 
 ## 1. The productivity puzzle

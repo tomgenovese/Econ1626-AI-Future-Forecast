@@ -1,0 +1,277 @@
+/* Interactive modules: step cards, guess first, checkout queue, policy dial, assumptions. */
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const pctNum = v => `${v >= 0 ? "+" : ""}${v.toFixed(1)}%`;
+
+  /* ---------- Step cards drive their section's sticky panel ---------- */
+  function initSteps() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const step = e.target, sec = step.closest("section");
+        $$(".step", sec).forEach(s => s.classList.toggle("is-active", s === step));
+        if (step.dataset.hl && window.highlightHarvard) window.highlightHarvard(step.dataset.hl);
+        if (step.dataset.view) showView(sec, step.dataset.view);
+        if (step.dataset.preset) Queue.preset(step.dataset.preset);
+      });
+    }, { rootMargin: "-40% 0px -45% 0px" });
+    $$(".section--steps .step").forEach(s => io.observe(s));
+  }
+  function showView(sec, name) {
+    $$(".panel-view", sec).forEach(v => v.classList.toggle("is-on", v.dataset.view === name));
+    if (sec.id === "finance") {
+      $("#fin-title").textContent = name === "queue" ? "The checkout queue" : "Businesses using AI, 2024–25";
+      $("#fin-src").textContent = name === "queue" ? "live simulation" : "ABS";
+      Queue.setVisible(name === "queue");
+    }
+  }
+
+  /* ---------- Guess first ---------- */
+  function initGuess() {
+    const inp = $("#guess-in"), out = $("#guess-out"), go = $("#guess-go");
+    if (!inp) return;
+    const upd = () => { out.textContent = `+${inp.value}%`; };
+    inp.addEventListener("input", upd); upd();
+    go.addEventListener("click", () => {
+      const g = +inp.value;
+      $("#guess-result").hidden = false;
+      go.textContent = "Change my guess";
+      $("#gval-you").textContent = `+${g}%`;
+      requestAnimationFrame(() => {
+        $$("#guess-result .fill[data-w]").forEach(f => { f.style.width = f.dataset.w + "%"; });
+        $("#gbar-you").style.width = (g / 30) * 100 + "%";
+      });
+      $("#guess-msg").textContent = g > 12
+        ? `You guessed +${g}%. The evidence says firms shipped at most 12% more, and the central estimate is nearer 6%. Most forecasts make the same assumption you did: that AI's extra work becomes extra output. Mostly, it doesn't.`
+        : `You guessed +${g}%. That's inside what the evidence allows: at most 12% more, with a central estimate nearer 6%. You've already spotted the bottleneck that headline forecasts miss.`;
+    });
+  }
+
+  /* ---------- Checkout queue simulation ---------- */
+  const Queue = (() => {
+    const cv = document.getElementById("queue-canvas");
+    if (!cv) return { preset() {}, setVisible() {} };
+    const ctx = cv.getContext("2d");
+    const W = 640, H = 250;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
+
+    const el = id => document.getElementById(id);
+    const ctrls = { speed: el("q-speed"), checkers: el("q-checkers"), strict: el("q-strict"), ai: el("q-ai") };
+    const outs = {
+      speed: v => `+${v}%`, checkers: v => `${v}`, strict: v => `${(v / 100).toFixed(1)}×`, ai: v => `${v}%`,
+    };
+    const PRESETS = {
+      software: { speed: 30, checkers: 2, strict: 100, ai: 0 },
+      finance: { speed: 30, checkers: 2, strict: 150, ai: 0 },
+      aicheck: { speed: 30, checkers: 2, strict: 150, ai: 30 },
+    };
+    const BASE_RATE = 1.2, HUMAN_TIME = 1.6, AI_TIME = 0.35, ERR = 0.15, HUMAN_CATCH = 0.9, AI_CATCH = 0.5, SIM_SPEED = 2;
+    const BELT_END = 300, QX = 312, BOOTH_X = 520;
+
+    let S, visible = false, last = 0, raf = 0;
+    function reset() {
+      S = { t: 0, spawnAcc: 0, belt: [], hq: [], aq: [], booths: [], ai: { item: null, left: 0 }, done: 0, slips: [], slipTotal: 0, arrivals: 0 };
+    }
+    reset();
+    const val = k => +ctrls[k].value;
+    function syncBooths() {
+      const n = val("checkers");
+      while (S.booths.length < n) S.booths.push({ item: null, left: 0 });
+      while (S.booths.length > n) { const b = S.booths.pop(); if (b.item) S.hq.unshift(b.item); }
+    }
+    function readOuts() { Object.keys(ctrls).forEach(k => { el(`q-${k}-o`).textContent = outs[k](val(k)); }); }
+    Object.values(ctrls).forEach(c => c.addEventListener("input", () => { readOuts(); syncBooths(); }));
+
+    function preset(name) {
+      const p = PRESETS[name]; if (!p) return;
+      Object.entries(p).forEach(([k, v]) => { ctrls[k].value = v; });
+      readOuts(); reset(); syncBooths();
+    }
+    preset("software");
+
+    function step(dt) {
+      S.t += dt;
+      const rate = BASE_RATE * (1 + val("speed") / 100);
+      S.spawnAcc += dt * rate;
+      while (S.spawnAcc >= 1) {
+        S.spawnAcc -= 1; S.arrivals++;
+        S.belt.push({ x: -10, err: Math.random() < ERR, toAI: Math.random() < val("ai") / 100 });
+      }
+      // belt movement
+      S.belt.forEach(it => { it.x += 170 * dt; });
+      while (S.belt.length && S.belt[0].x >= BELT_END) {
+        const it = S.belt.shift();
+        (it.toAI ? S.aq : S.hq).push(it);
+      }
+      const finish = (it, catchRate) => {
+        if (it.err && Math.random() > catchRate) { S.slips.push(S.t); S.slipTotal++; S.done++; }
+        else if (!it.err) S.done++;
+      };
+      const htime = HUMAN_TIME * (val("strict") / 100);
+      S.booths.forEach(b => {
+        if (b.item) { b.left -= dt; if (b.left <= 0) { finish(b.item, HUMAN_CATCH); b.item = null; } }
+        if (!b.item && S.hq.length) { b.item = S.hq.shift(); b.left = htime; b.total = htime; }
+      });
+      const a = S.ai;
+      if (a.item) { a.left -= dt; if (a.left <= 0) { finish(a.item, AI_CATCH + 0.2 - 0.5 * val("ai") / 100); a.item = null; } }
+      if (!a.item && S.aq.length) { a.item = S.aq.shift(); a.left = AI_TIME; a.total = AI_TIME; }
+      S.slips = S.slips.filter(t => S.t - t < 60);
+    }
+
+    function sq(x, y, s, it, alpha = 1) {
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = it.err ? "#ee406f" : "#05b047";
+      ctx.fillRect(x, y, s, s);
+      ctx.globalAlpha = 1;
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.font = "11px 'IBM Plex Mono', monospace";
+      ctx.fillStyle = "#86a891";
+      ctx.fillText("AI drafts arrive", 8, 18);
+      ctx.fillText("Waiting to be checked", QX, 18);
+      ctx.fillText("Checkers", BOOTH_X, 18);
+      // belt
+      ctx.strokeStyle = "#23603a"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, 120); ctx.lineTo(BELT_END, 120); ctx.moveTo(0, 136); ctx.lineTo(BELT_END, 136); ctx.stroke();
+      ctx.setLineDash([2, 6]); ctx.beginPath(); ctx.moveTo(0, 128); ctx.lineTo(BELT_END, 128); ctx.stroke(); ctx.setLineDash([]);
+      S.belt.forEach(it => sq(it.x, 123, 10, it));
+      // human queue grid
+      const cols = 14, cell = 13, qTop = 32, maxShow = cols * 7;
+      S.hq.slice(0, maxShow).forEach((it, i) => sq(QX + (i % cols) * cell, qTop + Math.floor(i / cols) * cell, 10, it));
+      if (S.hq.length > maxShow) { ctx.fillStyle = "#ffb000"; ctx.fillText(`+${S.hq.length - maxShow} more`, QX, qTop + 7 * cell + 12); }
+      // AI queue
+      ctx.fillStyle = "#86a891"; ctx.fillText("AI checker queue", QX, 205);
+      S.aq.slice(0, cols).forEach((it, i) => sq(QX + i * cell, 212, 10, it));
+      // human booths
+      const bh = Math.min(26, 150 / Math.max(1, S.booths.length));
+      S.booths.forEach((b, i) => {
+        const y = 30 + i * (bh + 4);
+        ctx.strokeStyle = "#23603a"; ctx.strokeRect(BOOTH_X, y, 110, bh);
+        if (b.item) {
+          sq(BOOTH_X + 6, y + bh / 2 - 5, 10, b.item);
+          ctx.fillStyle = "#3dff7a"; ctx.fillRect(BOOTH_X + 22, y + bh / 2 - 1, 80 * (1 - b.left / b.total), 2);
+        }
+      });
+      // AI booth
+      ctx.strokeStyle = val("ai") > 0 ? "#995c00" : "#173a22"; ctx.strokeRect(BOOTH_X, 205, 110, 22);
+      ctx.fillStyle = "#86a891"; ctx.fillText("AI", BOOTH_X + 84, 220);
+      if (S.ai.item) sq(BOOTH_X + 6, 211, 10, S.ai.item);
+      // counters
+      el("q-done").textContent = S.done;
+      el("q-wait").textContent = S.hq.length + S.aq.length;
+      el("q-rate").textContent = Math.round(BASE_RATE * (1 + val("speed") / 100) * 60);
+      el("q-slip").textContent = S.slipTotal;
+      el("q-alert").classList.toggle("is-on", S.slips.length >= 5);
+    }
+    function loop(ts) {
+      const dt = Math.min(0.05, (ts - last) / 1000 || 0); last = ts;
+      step(dt * SIM_SPEED); draw();
+      if (visible) raf = requestAnimationFrame(loop);
+    }
+    function setVisible(on) {
+      if (on === visible) return;
+      visible = on;
+      if (on) { last = performance.now(); raf = requestAnimationFrame(loop); } else cancelAnimationFrame(raf);
+    }
+    draw();
+    return { preset, setVisible };
+  })();
+
+  /* ---------- Policy dial (3 credits, starting from the baseline) ---------- */
+  const LEVERS = [
+    { id: "guidance", name: "Guidance on checking AI output", cost: 1,
+      note: "ASIC and APRA set expectations for checking AI output under existing powers. Trade-off: if it demands human sign-off on everything, it deepens the bottleneck. Measure: AI-related breaches and approval times.",
+      apply: p => { p.aiShare = p.aiShare.map((v, i) => Math.max(v, [0, 0.04, 0.08, 0.12, 0.15][i])); p.aiCatch = Math.max(p.aiCatch, 0.8); } },
+    { id: "capacity", name: "Build checking capacity", cost: 1,
+      note: "Firms retrain and move staff into checking, backed by training incentives. Fixes the volume problem. Trade-off: costs land before gains appear. Measure: review times and the share of staff in assurance.",
+      apply: p => { p.realloc = Math.max(p.realloc, 0.6); } },
+    { id: "junior", name: "Protect the junior pipeline", cost: 1,
+      note: "Keep graduate roles as apprentice checkers, so today's juniors become 2030's senior reviewers. Trade-off: a short-run cost while juniors look replaceable. Measure: graduate intake.",
+      apply: p => { p.realloc += 0.08; } },
+    { id: "tools", name: "Fund shared verification tools", cost: 1,
+      note: "Government and industry fund shared checking tools, so each AI draft needs less checking. The only lever aimed at the quality problem. Trade-off: public money for private benefit. Measure: error and rework rates.",
+      apply: p => { p.finMult = 1.1; } },
+    { id: "audit", name: "Require auditable models", cost: 1,
+      note: "Lemphers warns of \"opaque black-box systems\" (Lemphers 2025). That is also a checking problem: 30% of the AI use cases ASIC reviewed relied on third-party models (ASIC 2024). Auditable models make AI checkers more reliable.",
+      apply: p => { p.aiCatch = Math.min(0.95, (p.aiCatch || 0.6) + 0.15); p.aiShare = p.aiShare.map(v => v + 0.05); } },
+    { id: "measure", name: "Measure finished output, not drafts", cost: 0,
+      note: "Free. Judge AI by finished output, not drafts. It changes no outcome, but stops firms and governments misreading volume as productivity: watch what the readout reports.",
+      apply: () => {} },
+  ];
+  function initPolicy() {
+    const host = $("#levers"); if (!host) return;
+    const chosen = new Set();
+    LEVERS.forEach(l => {
+      const b = document.createElement("button");
+      b.className = "lever"; b.dataset.id = l.id; b.setAttribute("aria-pressed", "false");
+      b.innerHTML = `<span class="box"></span><span>${l.name}${l.cost ? "" : ' <span class="free">free</span>'}<small>${l.note}</small></span>`;
+      b.addEventListener("click", () => { chosen.has(l.id) ? chosen.delete(l.id) : chosen.add(l.id); render(); });
+      host.appendChild(b);
+    });
+    function render() {
+      const used = LEVERS.filter(l => chosen.has(l.id)).reduce((a, l) => a + l.cost, 0);
+      const left = 3 - used;
+      $("#credits-left").textContent = left;
+      $("#credit-pips").innerHTML = [0, 1, 2].map(i => `<span class="pip${i < used ? " used" : ""}"></span>`).join("");
+      $$(".lever", host).forEach(b => {
+        const l = LEVERS.find(x => x.id === b.dataset.id), on = chosen.has(l.id);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+        b.disabled = !on && l.cost > left;
+      });
+      const base = Model.PRESETS.baseline;
+      const p = JSON.parse(JSON.stringify(base));
+      LEVERS.forEach(l => { if (chosen.has(l.id)) l.apply(p); });
+      const mine = Model.run(p), b0 = Model.run(base), up = Model.run(Model.PRESETS.upside);
+      Viz.lineChart($("#chart-policy"), {
+        years: Model.YEARS, fmt: Viz.pct, yMin: 0.975, yMax: 1.1,
+        ariaLabel: "Net output under your policy choices versus the baseline and upside",
+        series: [
+          { name: "Upside", values: up.map(r => r.net), color: "#5f7d69", dash: "4 4" },
+          { name: "Baseline", values: b0.map(r => r.net), color: Viz.SCEN_COLOR.baseline },
+          { name: "Your policy", values: mine.map(r => r.net), color: "var(--neon)", width: 3 },
+        ],
+      });
+      const r = mine[4], r0 = b0[4];
+      const measured = chosen.has("measure");
+      const rows = [
+        [measured ? "Reported gain (finished output)" : "Reported gain (counting drafts)", measured ? pctNum((r.finished - 1) * 100) : pctNum((r.drafts - 1) * 100), measured ? "" : "up"],
+        ["Net output after error costs", pctNum((r.net - 1) * 100), r.net > r0.net + 0.002 ? "up" : ""],
+        ["Pass-through", r.passThrough.toFixed(2), r.passThrough > r0.passThrough + 0.01 ? "up" : ""],
+        ["Backlog of unchecked work", `${Math.round(r.backlog * 100)}`, r.backlog > r0.backlog + 0.01 ? "down" : ""],
+        ["Errors slipping through, per 1,000", r.slippedPer1000.toFixed(1), r.slippedPer1000 > r0.slippedPer1000 + 0.5 ? "down" : ""],
+      ];
+      $("#policy-readout").innerHTML = `<div><dt><b style="color:var(--neon);font-weight:500">In 2030</b></dt><dd></dd></div>` +
+        rows.map(([k, v, c]) => `<div><dt>${k}</dt><dd class="${c}">${v}</dd></div>`).join("");
+    }
+    render();
+  }
+
+  /* ---------- Assumptions panel ---------- */
+  function initAssume() {
+    const fin = $("#a-fin"); if (!fin) return;
+    const exp = $("#a-exp"), rem = $("#a-rem");
+    const set = () => { fin.value = 1.5; exp.value = 0.44; rem.value = 10; };
+    set();
+    const render = () => {
+      $("#a-fin-o").textContent = (+fin.value).toFixed(1) + "×";
+      $("#a-exp-o").textContent = Math.round(exp.value * 100) + "%";
+      $("#a-rem-o").textContent = rem.value;
+      const ov = { finMult: +fin.value, exposure: +exp.value, remediationCost: +rem.value };
+      const rows = ["baseline", "upside", "downside"].map(k => {
+        const r = Model.run(Model.PRESETS[k], ov)[4];
+        return `<tr><td>${k[0].toUpperCase() + k.slice(1)}</td><td>${pctNum((r.drafts - 1) * 100)}</td><td>${pctNum((r.finished - 1) * 100)}</td><td>${r.passThrough.toFixed(2)}</td><td>${pctNum((r.net - 1) * 100)}</td></tr>`;
+      });
+      $("#assume-table").innerHTML = "<tr><th>2030</th><th>Drafts</th><th>Finished</th><th>Pass-through</th><th>Net</th></tr>" + rows.join("");
+    };
+    [fin, exp, rem].forEach(i => i.addEventListener("input", render));
+    $("#a-reset").addEventListener("click", () => { set(); render(); });
+    render();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initSteps(); initGuess(); initPolicy(); initAssume();
+  });
+})();
