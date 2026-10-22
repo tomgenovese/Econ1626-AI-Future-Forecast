@@ -195,7 +195,7 @@
       note: "Government and industry fund shared checking tools, so each AI draft needs less checking. The only lever aimed at the quality problem. Trade-off: public money for private benefit. Measure: error and rework rates.",
       apply: p => { p.finMult = 1.1; } },
     { id: "audit", name: "Require auditable models", cost: 1,
-      note: "Lemphers warns of \"opaque black-box systems\" (Lemphers 2025). That is also a checking problem: 30% of the AI use cases ASIC reviewed relied on third-party models (ASIC 2024). Auditable models make AI checkers more reliable.",
+      note: "Prefer open-weight or contractually auditable models, so firms can inspect what checks their work. 30% of the AI use cases ASIC reviewed relied on third-party models (ASIC 2024). Trade-off: less choice of vendor. Measure: share of models open to audit.",
       apply: p => { p.aiCatch = Math.min(0.95, (p.aiCatch || 0.6) + 0.15); p.aiShare = p.aiShare.map(v => v + 0.05); } },
     { id: "measure", name: "Measure finished output, not drafts", cost: 0,
       note: "Free. Judge AI by finished output, not drafts. It changes no outcome, but stops firms and governments misreading volume as productivity: watch what the readout reports.",
