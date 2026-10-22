@@ -5,7 +5,7 @@ An interactive web essay for ECON1626 Assessment 3 (AI Future Forecast), RMIT Un
 
 ## ▶ View the live essay
 
-**https://tomgenovese.github.io/Econ1626-AI-Future-Forecast/forecast.html**
+**https://tomgenovese.github.io/econ1626-ai-future-forecast/forecast.html**
 
 Best viewed on a laptop or desktop browser. It also works on mobile.
 
