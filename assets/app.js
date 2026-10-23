@@ -165,7 +165,7 @@
       trigger: "ASIC and APRA guidance under existing powers.", watch: "AI error rates falling." },
     downside: { name: "Downside: slop accumulation",
       what: "Checking goes wrong. Firms let AI rubber-stamp AI, so output looks strong at first. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI.",
-      trigger: "An AI-caused incident revives the paused guardrails.", watch: "72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026)." },
+      trigger: "An AI-caused incident forces a dedicated AI law.", watch: "72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026)." },
   };
   const DETAIL = {
     drafts: "Dashed: drafts produced. Solid: finished output. The gap is work stuck in checking.",

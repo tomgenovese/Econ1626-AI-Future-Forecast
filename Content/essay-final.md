@@ -66,7 +66,7 @@ AI use among Australian financial and insurance businesses jumped from **1% to 2
 
 AI agents now draft credit assessments, statements of advice and compliance reports, and senior, accountable staff must check each against duties such as responsible lending. Even in an AI developer's own data, most use is augmentation, with people working alongside AI rather than handing tasks over (Anthropic 2025). Finished output can grow only as fast as checking capacity. **▶ Try it:** raise the AI boost and watch the queue.
 
-Finance goes further than software. In Chen and Stratton's model, checking per draft rises with the cost of an undetected error, and in finance that cost is huge: six major institutions paid or offered **$4.7 billion** in remediation for fees charged for no service and non-compliant advice (Australian Broker 2023). Stricter checks make the bottleneck bigger here.
+Finance goes further than software. In Chen and Stratton's model, checking per draft rises with the cost of an undetected error, and in finance that cost is huge: six major institutions paid or offered **$4.7 billion** in remediation for fees charged for no service and non-compliant advice (ASIC 2023). Stricter checks make the bottleneck bigger here.
 
 The regulator sees the gap: of 14 licensees planning to expand AI, **only one** upgraded its governance first (ASIC 2024).
 
@@ -86,7 +86,7 @@ The model starts from today's sector: 552,900 workers (Jobs and Skills Australia
 
 **Upside: verification catches up.** Checking goes right. Firms invest in checking and auditable AI handles routine checks, so almost every extra draft gets through: finished output rises 10.6%, about 8% after error costs. *Trigger:* ASIC and APRA guidance under existing powers. *Watch:* AI error rates falling.
 
-**Downside: slop accumulation.** Checking goes wrong. Firms let AI rubber-stamp AI, so output looks strong at first. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI. *Trigger:* An AI-caused incident revives the paused guardrails. *Watch:* 72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026).
+**Downside: slop accumulation.** Checking goes wrong. Firms let AI rubber-stamp AI, so output looks strong at first. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI. *Trigger:* An AI-caused incident forces a dedicated AI law. *Watch:* 72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026).
 
 **Testing the Industry Week claim.** At Industry Week, Dave Lemphers of Maincode argued that AI will change work profoundly, but that the opportunities it creates will outweigh what it displaces (Lemphers 2026); elsewhere he calls AI "a productivity lift for Australian businesses" (Lemphers 2025). The evidence supports him on jobs: adopting firms saw no fall in employment, and the IMF finds about half of exposed jobs in advanced economies are ones AI complements (Cazzaniga et al. 2024). It qualifies him on productivity: a lift in tasks is not a lift in output. His optimism holds only in the upside, so investment in checking is the hinge between his forecast and the baseline.
 
@@ -96,13 +96,13 @@ The model starts from today's sector: 552,900 workers (Jobs and Skills Australia
 
 ### Don't write an AI law. Make sure someone checks the AI's work.
 
-Australia has chosen not to pass a dedicated AI law: the National AI Plan put mandatory guardrails "on hold" (Department of Industry, Science and Resources 2025), and the Productivity Commission calls AI-specific rules a last resort, pending gap analyses (Productivity Commission 2025).
+Australia has chosen not to pass a dedicated AI law: the National AI Plan builds on existing laws and regulators, adding targeted laws only where needed (Department of Industry, Science and Resources 2025), and the Productivity Commission calls AI-specific rules a last resort, pending gap analyses (Productivity Commission 2025).
 
-I accept that, but in finance the gap is already visible. ASIC's one-in-14 finding (ASIC 2024) is the gap analysis. The goal is to move the sector from baseline to upside with tools that exist, starting with APRA's CPS 230, which already requires firms to manage critical operations and report incidents (Brightlaw 2025).
+I accept that, but in finance the gap is already visible. ASIC's one-in-14 finding (ASIC 2024) is the gap analysis. The goal is to move the sector from baseline to upside with tools that exist, starting with APRA's CPS 230, which already requires firms to manage critical operations and report incidents (APRA 2023).
 
 **Can AI check the AI?** Partly. AI checkers add capacity cheaply, but share the drafting AI's blind spots, and a licensee, not a model, carries legal responsibility. Accountable, AI checking helps; as a rubber stamp, it produces the downside.
 
-**Extending the Industry Week claim.** Lemphers frames "opaque black-box systems" as a sovereignty problem (Lemphers 2025). This forecast shows it is also a checking problem: the average transparency score of leading AI developers fell from 58 to 40 in a year (Stanford HAI 2026). Open-weight models, which firms can inspect, now trail the best closed models by only about two points (Stanford HAI 2025), so auditability need not cost capability.
+**Extending the Industry Week claim.** Lemphers frames "opaque black-box systems" as a sovereignty problem (Lemphers 2025). This forecast shows it is also a checking problem: the average transparency score of leading AI developers fell from 58 to 40 in a year (Wan et al. 2025). Open-weight models, which firms can inspect, now trail the best closed models by only about two points (Stanford HAI 2025), so auditability need not cost capability.
 
 > **Interactive: Policy dial.** Three policy credits, starting from the baseline:
 >
@@ -155,50 +155,50 @@ Each year the model compares the checking that AI-boosted drafts need with the c
 
 ## References
 
-ABS (Australian Bureau of Statistics) (2026a) *Characteristics of Australian Business, 2024-25*, ABS website, accessed 22 October 2026. https://www.abs.gov.au/statistics/industry/technology-and-innovation/characteristics-australian-business/2024-25
+ABS (Australian Bureau of Statistics) (2026a) *Characteristics of Australian Business, 2024-25*, ABS, accessed 23 October 2026. https://www.abs.gov.au/statistics/industry/technology-and-innovation/characteristics-australian-business/2024-25
 
-ABS (Australian Bureau of Statistics) (2026b) *Australian National Accounts: National Income, Expenditure and Product, June 2026*, ABS website, accessed 22 October 2026. https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release
+ABS (Australian Bureau of Statistics) (2026b) *Australian National Accounts: National Income, Expenditure and Product, June 2026*, ABS, accessed 23 October 2026. https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product/latest-release
 
 Anthropic (2025) *The Anthropic Economic Index*, Anthropic, 10 February, accessed 23 October 2026. https://www.anthropic.com/research/the-anthropic-economic-index
 
-ASIC (Australian Securities and Investments Commission) (2024) *REP 798 Beware the gap: Governance arrangements in the face of AI innovation*, ASIC, accessed 22 October 2026. https://download.asic.gov.au/media/mtllqjo0/rep-798-published-29-october-2024.pdf
+APRA (Australian Prudential Regulation Authority) (2023) *Prudential Standard CPS 230 Operational Risk Management*, APRA, July, accessed 23 October 2026. https://www.apra.gov.au/operational-risk-management-1
 
-Australian Broker (2023) 'Banks to pay $4.7 billion in compensation to customers', *Australian Broker*, 10 March, accessed 22 October 2026. https://brokernews.com.au/news/breaking-news/banks-to-pay-4-7-billion-in-compensation-to-customers-282142.aspx
+ASIC (Australian Securities and Investments Commission) (2023) *23-057MR Final ASIC update: Compensation for financial advice related misconduct as at 31 December 2022* [media release], ASIC, 10 March, accessed 23 October 2026. https://asic.gov.au/about-asic/news-centre/find-a-media-release/2023-releases/23-057mr-final-asic-update-compensation-for-financial-advice-related-misconduct-as-at-31-december-2022/
 
-Australian Broker (2026) 'CommBank tops Asia-Pacific AI ranking, fast-tracks engineer training', *Australian Broker*, 8 October, accessed 22 October 2026. https://www.brokernews.com.au/news/breaking-news/commbank-tops-asiapacific-ai-ranking-fasttracks-engineer-training-290113.aspx
+ASIC (Australian Securities and Investments Commission) (2024) *REP 798 Beware the gap: Governance arrangements in the face of AI innovation*, ASIC, October, accessed 23 October 2026. https://download.asic.gov.au/media/mtllqjo0/rep-798-published-29-october-2024.pdf
 
-Becker J, Rush N, Barnes E and Rein D (2025) *Measuring the impact of early-2025 AI on experienced open-source developer productivity*, METR, July. https://metr.org/
+Australian Broker (2026) 'CommBank tops Asia-Pacific AI ranking, fast-tracks engineer training', *Australian Broker*, 8 October, accessed 23 October 2026. https://www.brokernews.com.au/news/breaking-news/commbank-tops-asiapacific-ai-ranking-fasttracks-engineer-training-290113.aspx
 
-Brightlaw (2025) 'APRA prudential standard on operational risk management commences', *Brightlaw*, accessed 22 October 2026. https://www.brightlaw.com.au/apra-prudential-standard-on-operational-risk-management-commences/
+Becker J, Rush N, Barnes E and Rein D (2025) *Measuring the impact of early-2025 AI on experienced open-source developer productivity*, METR, 10 July, accessed 23 October 2026. https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
 
 Brynjolfsson E, Rock D and Syverson C (2018) *The productivity J-curve: How intangibles complement general purpose technologies*, NBER Working Paper 25148, National Bureau of Economic Research. https://www.nber.org/papers/w25148
 
-Cazzaniga M, Jaumotte F, Li L, Melina G, Panton AJ, Pizzinelli C, Rockall E and Tavares MM (2024) *Gen-AI: Artificial intelligence and the future of work*, IMF Staff Discussion Note SDN/2024/001, International Monetary Fund, January.
+Cazzaniga M, Jaumotte F, Li L, Melina G, Panton AJ, Pizzinelli C, Rockall E and Tavares MM (2024) *Gen-AI: Artificial intelligence and the future of work*, IMF Staff Discussion Note SDN/2024/001, International Monetary Fund, January. https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379
 
-Chen F and Stratton J (2026) *Artificial intelligence in the firm: Bottlenecks in software production* [job market paper], Harvard University, current version 4 August 2026.
+Chen F and Stratton J (2026) *Artificial intelligence in the firm: Bottlenecks in software production* [job market paper], Harvard University, version of 4 August 2026. https://fion.ac/jellyfish.pdf
 
-Department of Industry, Science and Resources (2025) *National AI Plan*, Australian Government.
+Department of Industry, Science and Resources (2025) *National AI Plan*, Australian Government, December, accessed 23 October 2026. https://www.industry.gov.au/sites/default/files/2025-12/national-ai-plan.pdf
 
 Gordon J, Zhao S, Barnes P, Munoz M and Hunter J (2016) *Productivity in financial and insurance services*, Productivity Commission staff research note, Productivity Commission. https://www.pc.gov.au/inquiries-and-research/productivity-financial-insurance-services
 
-Jobs and Skills Australia (2025) *Financial and Insurance Services*, Jobs and Skills Australia, accessed 22 October 2026. https://www.jobsandskills.gov.au/data/labour-market-insights/industries/financial-and-insurance-services
+Jobs and Skills Australia (2025) *Financial and Insurance Services*, Jobs and Skills Australia, accessed 23 October 2026. https://www.jobsandskills.gov.au/data/labour-market-insights/industries/financial-and-insurance-services
 
-Jones C and Tonetti C (2026) *Past automation and future A.I.: How weak links tame the growth explosion* [working paper].
+Jones CI and Tonetti C (2026) *Past automation and future A.I.: How weak links tame the growth explosion* [working paper], Stanford University. https://web.stanford.edu/~chadj/JonesTonetti_Automation.pdf
 
 Kremer M (1993) 'The O-ring theory of economic development', *The Quarterly Journal of Economics*, 108(3):551–575. https://doi.org/10.2307/2118400
 
 Kwa T, West B, Becker J et al. (2025) *Measuring AI ability to complete long tasks*, METR, 19 March, accessed 23 October 2026. https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/
 
-Lemphers D (2025) ''If we don't build our own stack, we become someone else's customer': Australia's AI warning', *Forbes Australia*, 22 September, accessed 22 October 2026. https://www.forbes.com.au/news/innovation/the-sovereign-ai-race-is-on-and-australia-cant-afford-to-sit-it-out/
+Lemphers D (2025) ''If we don't build our own stack, we become someone else's customer': Australia's AI warning', *Forbes Australia*, 22 September, accessed 23 October 2026. https://www.forbes.com.au/news/innovation/the-sovereign-ai-race-is-on-and-australia-cant-afford-to-sit-it-out/
 
 Lemphers D (2026) 'AI and the future of work' [Industry Week presentation], ECON1626, RMIT University, Melbourne, 23 September.
 
-Microsoft and Tech Council of Australia (2023) *Australia's generative AI opportunity*, Microsoft and Tech Council of Australia, accessed 22 October 2026. https://news.microsoft.com/en-au/features/generative-ai-could-contribute-115-billion-annually-to-australias-economy-by-2030/
+Microsoft and Tech Council of Australia (2023) *Australia's generative AI opportunity*, Microsoft and Tech Council of Australia, July, accessed 23 October 2026. https://news.microsoft.com/en-au/features/generative-ai-could-contribute-115-billion-annually-to-australias-economy-by-2030/
 
-Productivity Commission (2025) *Harnessing data and digital technology*, Inquiry report, Productivity Commission, December.
+Productivity Commission (2025) *Harnessing data and digital technology*, Inquiry Report No. 111, Productivity Commission, December, accessed 23 October 2026. https://www.pc.gov.au/inquiries/current/data-digital
 
-Stanford HAI (Stanford Institute for Human-Centered Artificial Intelligence) (2025) *The 2025 AI Index Report*, Stanford University. https://hai.stanford.edu/ai-index/2025-ai-index-report
+Stanford HAI (Stanford Institute for Human-Centered Artificial Intelligence) (2025) *The 2025 AI Index Report*, Stanford University, April. https://hai.stanford.edu/ai-index/2025-ai-index-report
 
-Stanford HAI (Stanford Institute for Human-Centered Artificial Intelligence) (2026) *The 2026 AI Index Report*, Stanford University, April.
+Wan A, Klyman K, Kapoor S, Maslej N et al. (2025) *The 2025 Foundation Model Transparency Index*, arXiv:2512.10169, December. https://arxiv.org/abs/2512.10169
 
-Whittle J (2025) 'Does AI actually boost productivity? The evidence is murky', *CSIRO*, 15 July, accessed 22 October 2026. https://www.csiro.au/en/news/all/articles/2025/july/does-ai-actually-boost-productivity-the-evidence-is-murky
+Whittle J (2025) 'Does AI actually boost productivity? The evidence is murky', *CSIRO*, 15 July, accessed 23 October 2026. https://www.csiro.au/en/news/all/articles/2025/july/does-ai-actually-boost-productivity-the-evidence-is-murky
