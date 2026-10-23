@@ -478,3 +478,40 @@ input[type=range] { accent-color: var(--hi); }
   .panel.is-interactive { animation: none; box-shadow: 0 0 0 1px var(--hi); }
 }
 .ctrl input[type=range] { accent-color: var(--hi); }
+
+/* Scenario section v3: tiles, one main chart, tabs */
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 0 0 1.25rem; }
+.tile {
+  position: relative; text-align: left; cursor: pointer; color: var(--ink);
+  background: var(--panel); border: 1px solid #6b6100; border-top: 4px solid var(--s-amber);
+  padding: 0.9rem 1rem 1rem; display: grid; gap: 0.15rem; font-family: var(--mono);
+}
+.tile[data-k=upside] { border-top-color: var(--s-green); }
+.tile[data-k=downside] { border-top-color: var(--s-red); }
+.tile:hover { border-color: var(--hi); }
+.tile[aria-pressed=true] { border-color: var(--hi); background: #141200; box-shadow: 0 0 0 1px var(--hi); }
+.tile__name { font-size: 0.85rem; color: var(--ink-dim); }
+.tile__num { font-size: 2.3rem; line-height: 1.1; color: #fff; }
+.tile__lbl { font-size: 0.72rem; color: var(--ink-dim); }
+.tile__tag { font-family: var(--sans); font-size: 0.95rem; margin-top: 0.35rem; }
+.tile[aria-pressed=true] .tile__name { color: var(--hi); }
+.scen-main { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+.scen-main .scenario-card { margin: 0; }
+.scenario-card .readout { margin-top: 0.75rem; }
+.scenario-card .readout dd { text-align: right; max-width: 70%; }
+.more { margin-top: 1.5rem; }
+.more__h { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-dim); margin: 0 0 0.5rem; }
+.tabs { display: flex; gap: 0; margin-bottom: -1px; }
+.tab { font-family: var(--mono); font-size: 0.8rem; background: transparent; color: var(--ink); border: 1px solid #6b6100; padding: 0.45rem 0.9rem; cursor: pointer; margin-right: -1px; }
+.tab:hover { border-color: var(--hi); }
+.tab[aria-selected=true] { background: var(--hi); color: #000; border-color: var(--hi); }
+.more .chart-card { max-width: 760px; }
+@media (max-width: 900px) {
+  .tiles { grid-template-columns: 1fr; }
+  .tile__num { font-size: 1.8rem; }
+  .scen-main { grid-template-columns: 1fr; }
+}
+.tile[aria-pressed=true] { color: var(--ink); }
+.scenario-card .readout div { display: block; }
+.scenario-card .readout dt { font-size: 0.75rem; margin-bottom: 0.15rem; }
+.scenario-card .readout dd { text-align: left; max-width: none; font-family: var(--sans); font-size: 0.95rem; }

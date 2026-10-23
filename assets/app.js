@@ -157,47 +157,67 @@
   const pct = v => `${v >= 1 ? "+" : ""}${((v - 1) * 100).toFixed(1)}%`;
   const SCEN_COLOR = { baseline: C.amber, upside: C.green, downside: C.red };
   const CARDS = {
-    baseline: ["Baseline: the review backlog", "If today's trends continue: agents spread across most large firms by 2028, but senior reviewers stay scarce, and each finance draft needs more checking than code. Pass-through falls to 0.12, against 0.20 in software: drafts rise 9.5% while finished output rises 1.1%. After error costs the net gain is roughly zero. Watch: approval times and assurance hiring."],
-    upside: ["Upside: verification catches up", "If checking goes right: firms invest in checking, and regulators set clear expectations for AI output. Capacity keeps pace and auditable AI handles routine checks, so almost every extra draft gets through: finished output rises 10.6%, about 8% after error costs. Trigger: ASIC and APRA guidance under existing powers."],
-    downside: ["Downside: slop accumulation", "If checking goes wrong: firms let AI rubber-stamp AI. Output looks strong at first because unchecked drafts ship. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI. Trigger: an AI-caused incident revives the paused guardrails. Warning sign: 72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026)."],
+    baseline: { name: "Baseline: the review backlog",
+      what: "Today's trends continue. Agents spread across most large firms by 2028, but senior reviewers stay scarce and each finance draft needs more checking than code. Drafts rise 9.5%; finished output just 1.1%. Pass-through is 0.12, against 0.20 in software.",
+      trigger: "None: this is the default path.", watch: "Approval times and assurance hiring." },
+    upside: { name: "Upside: verification catches up",
+      what: "Checking goes right. Firms invest in checking and auditable AI handles routine checks, so almost every extra draft gets through: finished output rises 10.6%, about 8% after error costs.",
+      trigger: "ASIC and APRA guidance under existing powers.", watch: "AI error rates falling." },
+    downside: { name: "Downside: slop accumulation",
+      what: "Checking goes wrong. Firms let AI rubber-stamp AI, so output looks strong at first. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI.",
+      trigger: "An AI-caused incident revives the paused guardrails.", watch: "72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026)." },
   };
+  const DETAIL = {
+    drafts: "Dashed: drafts produced. Solid: finished output. The gap is work stuck in checking.",
+    backlog: "Unchecked work piling up, as a % of one year's pre-AI output.",
+    jobs: "Total sector jobs stay about flat; this is the number doing checking and assurance.",
+  };
+  let curKey = "baseline", curTab = "drafts";
+
+  function renderDetail() {
+    const rows = Model.run(Model.PRESETS[curKey]), years = Model.YEARS, col = SCEN_COLOR[curKey];
+    document.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === curTab ? "true" : "false"));
+    document.getElementById("detail-sub").textContent = DETAIL[curTab];
+    const host = document.getElementById("chart-detail");
+    if (curTab === "drafts") lineChart(host, { years, fmt: pct, yMin: 1, yMax: 1.12, ariaLabel: "Drafts versus finished output",
+      series: [{ name: "Drafts", values: rows.map(r => r.drafts), color: C.dim, dash: "5 4" }, { name: "Finished", values: rows.map(r => r.finished), color: col }] });
+    if (curTab === "backlog") lineChart(host, { years, fmt: v => (v * 100).toFixed(0), yMin: 0, yMax: 0.4, ariaLabel: "Backlog of unchecked work",
+      series: [{ name: "Backlog", values: rows.map(r => r.backlog), color: col }] });
+    if (curTab === "jobs") lineChart(host, { years, fmt: v => `${Math.round(v / 1000)}k`, yMin: 130000, yMax: 155000, ariaLabel: "Checking and assurance jobs",
+      series: [{ name: "Checking jobs", values: rows.map(r => r.checkJobs), color: col }] });
+  }
 
   function renderScenario(key) {
-    const rows = Model.run(Model.PRESETS[key]);
+    curKey = key;
     const years = Model.YEARS;
     document.querySelectorAll("[data-scenario]").forEach(b => b.setAttribute("aria-pressed", b.dataset.scenario === key ? "true" : "false"));
-    const card = document.getElementById("scenario-card");
-    if (card) { card.dataset.k = key; card.innerHTML = `<h3>${CARDS[key][0]}</h3><p>${CARDS[key][1]}</p>`; }
-
-    lineChart(document.getElementById("chart-drafts"), {
-      years, fmt: pct, yMin: 1, yMax: 1.12,
-      ariaLabel: "Drafts versus finished output, 2026 to 2030",
-      series: [
-        { name: "Drafts", values: rows.map(r => r.drafts), color: C.dim, dash: "5 4" },
-        { name: "Finished", values: rows.map(r => r.finished), color: SCEN_COLOR[key] },
-      ],
-    });
-    lineChart(document.getElementById("chart-backlog"), {
-      years, fmt: v => (v * 100).toFixed(0), yMin: 0, yMax: 0.4,
-      ariaLabel: "Cumulative backlog of unchecked work",
-      series: [{ name: "Backlog", values: rows.map(r => r.backlog), color: SCEN_COLOR[key] }],
-    });
-    lineChart(document.getElementById("chart-jobs"), {
-      years, fmt: v => `${Math.round(v / 1000)}k`, yMin: 130000, yMax: 155000,
-      ariaLabel: "Checking and assurance jobs",
-      series: [{ name: "Checking jobs", values: rows.map(r => r.checkJobs), color: SCEN_COLOR[key] }],
-    });
+    const c = CARDS[key], card = document.getElementById("scenario-card");
+    card.dataset.k = key;
+    card.innerHTML = `<h3>${c.name}</h3><p>${c.what}</p><dl class="readout"><div><dt>Trigger</dt><dd>${c.trigger}</dd></div><div><dt>Watch</dt><dd>${c.watch}</dd></div></dl>`;
     const all = Object.keys(Model.PRESETS).map(k => ({ k, rows: Model.run(Model.PRESETS[k]) }));
     lineChart(document.getElementById("chart-net"), {
       years, fmt: pct, yMin: 0.95, yMax: 1.12,
       ariaLabel: "Net output after error costs, all three scenarios",
       series: [
-        { name: "All ship", values: rows.map(r => r.drafts), color: C.dim, dash: "2 4" },
+        { name: "All ship", values: all[0].rows.map(r => r.drafts), color: C.dim, dash: "2 4", muted: true },
         ...all.map(({ k, rows: rr }) => ({
           name: k[0].toUpperCase() + k.slice(1), values: rr.map(r => r.net), color: SCEN_COLOR[k],
-          width: k === key ? 3 : 1.5, muted: k !== key,
+          width: k === key ? 3.5 : 1.25, muted: k !== key,
         })),
       ],
+    });
+    renderDetail();
+  }
+
+  function initTiles() {
+    ["baseline", "upside", "downside"].forEach(k => {
+      const rows = Model.run(Model.PRESETS[k]);
+      const worst = rows.reduce((a, r) => (r.net < a.net ? r : a));
+      const useWorst = k === "downside";
+      const v = useWorst ? worst.net : rows[4].net;
+      const n = (v - 1) * 100;
+      document.getElementById(`tile-${k}`).textContent = Math.abs(n) < 0.5 ? "≈ 0%" : `${n > 0 ? "+" : "−"}${Math.abs(n).toFixed(n > 0 ? 0 : 1)}%`;
+      document.getElementById(`tile-${k}-l`).textContent = useWorst ? `net output at the worst (${worst.year})` : "net output by 2030";
     });
   }
 
@@ -205,6 +225,8 @@
     const btns = document.querySelectorAll("[data-scenario]");
     if (!btns.length) return;
     btns.forEach(b => b.addEventListener("click", () => renderScenario(b.dataset.scenario)));
+    document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => { curTab = b.dataset.tab; renderDetail(); }));
+    initTiles();
     renderScenario("baseline");
   }
 

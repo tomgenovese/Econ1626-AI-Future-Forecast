@@ -167,19 +167,26 @@
   <h2 class="claim"><span class="fk">F4 Three scenarios to 2030</span>Drafts rise 10% in every future. What differs is how much gets checked.</h2>
   <div class="prose"><p>The model starts from today's sector: 552,900 workers <span class="cite">(Jobs and Skills Australia 2025)</span> and AI use at 24% of firms <span class="cite">(ABS 2026a)</span>, rising to 72–80% by 2030. AI can draft or assist with about 44% of work hours <span class="cite">(Microsoft &amp; Tech Council of Australia 2023)</span> and lifts output on that work by 30% <span class="cite">(Chen &amp; Stratton 2026)</span>. The baseline is today's trends continuing; the upside is what happens if checking goes right; the downside, if it goes wrong.</p></div>
 
-  <p class="hint"><span class="tag-play">▶ Try it</span> Pick a future and watch all four charts change.</p>
-  <div class="switcher" role="group" aria-label="Choose a scenario">
-    <button class="btn" data-scenario="baseline" aria-pressed="true"><span class="key">B</span>Baseline: the review backlog</button>
-    <button class="btn" data-scenario="upside" aria-pressed="false"><span class="key">U</span>Upside: verification catches up</button>
-    <button class="btn" data-scenario="downside" aria-pressed="false"><span class="key">D</span>Downside: slop accumulation</button>
+  <p class="hint"><span class="tag-play">▶ Try it</span> Pick a future.</p>
+  <div class="tiles" role="group" aria-label="Choose a scenario">
+    <button class="tile" data-scenario="baseline" data-k="baseline" aria-pressed="true"><span class="tile__name">Baseline</span><span class="tile__num" id="tile-baseline"></span><span class="tile__lbl" id="tile-baseline-l"></span><span class="tile__tag">Drafts pile up</span></button>
+    <button class="tile" data-scenario="upside" data-k="upside" aria-pressed="false"><span class="tile__name">Upside</span><span class="tile__num" id="tile-upside"></span><span class="tile__lbl" id="tile-upside-l"></span><span class="tile__tag">Checking keeps pace</span></button>
+    <button class="tile" data-scenario="downside" data-k="downside" aria-pressed="false"><span class="tile__name">Downside</span><span class="tile__num" id="tile-downside"></span><span class="tile__lbl" id="tile-downside-l"></span><span class="tile__tag">Unchecked AI, then a reckoning</span></button>
   </div>
-  <div class="scenario-card" id="scenario-card" aria-live="polite"></div>
 
-  <div class="dash">
-    <div class="chart-card"><h3>Drafts vs finished output</h3><p class="sub">Change versus a world without AI</p><div class="chart" id="chart-drafts"></div></div>
-    <div class="chart-card"><h3>Backlog of unchecked work</h3><p class="sub">Cumulative, in % of one year's pre-AI output</p><div class="chart" id="chart-backlog"></div></div>
-    <div class="chart-card"><h3>Checking and assurance jobs</h3><p class="sub">Total sector jobs stay about flat; this is the share doing checking</p><div class="chart" id="chart-jobs"></div></div>
-    <div class="chart-card"><h3>Net output after error costs</h3><p class="sub">All three futures. "All ship" is the assumption behind headline forecasts: every draft becomes output</p><div class="chart" id="chart-net"></div></div>
+  <div class="scen-main">
+    <div class="chart-card"><h3>Net output after error costs, versus a world without AI</h3><div class="chart" id="chart-net"></div></div>
+    <div class="scenario-card" id="scenario-card" aria-live="polite"></div>
+  </div>
+
+  <div class="more">
+    <p class="more__h">Explore more for this future:</p>
+    <div class="tabs" role="tablist" aria-label="More charts">
+      <button class="tab" role="tab" data-tab="drafts" aria-selected="true">Drafts vs finished</button>
+      <button class="tab" role="tab" data-tab="backlog" aria-selected="false">Backlog</button>
+      <button class="tab" role="tab" data-tab="jobs" aria-selected="false">Checking jobs</button>
+    </div>
+    <div class="chart-card"><p class="sub" id="detail-sub"></p><div class="chart" id="chart-detail"></div></div>
   </div>
 
   <div class="callout">

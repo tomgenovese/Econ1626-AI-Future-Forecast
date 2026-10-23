@@ -62,13 +62,13 @@ The result is "AI slop": unchecked output piling up, and no more finished produc
 
 AI use among Australian financial and insurance businesses jumped from **1% to 24%** between 2021–22 and 2024–25, the fastest rise of any industry and double the all-business average (ABS 2026a). The Commonwealth Bank, first in Asia-Pacific for AI maturity, is training its engineers in AI coding (Australian Broker 2026).
 
-AI agents now draft credit assessments, statements of advice and compliance reports, and senior, accountable staff must check each against duties such as responsible lending. Even in an AI developer's own data, most use is augmentation, with people working alongside AI rather than handing tasks over (Anthropic 2025). Finished output can grow only as fast as checking capacity. **Try it:** raise the AI boost and watch the queue.
+AI agents now draft credit assessments, statements of advice and compliance reports, and senior, accountable staff must check each against duties such as responsible lending. Even in an AI developer's own data, most use is augmentation, with people working alongside AI rather than handing tasks over (Anthropic 2025). Finished output can grow only as fast as checking capacity. **▶ Try it:** raise the AI boost and watch the queue.
 
 Finance goes further than software. In Chen and Stratton's model, checking per draft rises with the cost of an undetected error, and in finance that cost is huge: six major institutions paid or offered **$4.7 billion** in remediation for fees charged for no service and non-compliant advice (Australian Broker 2023). Stricter checks make the bottleneck bigger here.
 
 The regulator sees the gap: of 14 licensees planning to expand AI, **only one** upgraded its governance first (ASIC 2024).
 
-**Now try letting AI do the checking.** Push it past 60%.
+**▶ Now try letting AI do the checking.** Push it past 60%.
 
 > **Interactive: The checkout queue.** Each square is a draft; red ones contain an error. Humans catch 9 in 10 errors. AI checkers catch about 6 in 10 when lightly used, and fewer as they take more of the load, because AI checking AI shares its blind spots. Sliders: AI drafting boost, human checkers, checking per draft, AI checking share. If too many errors slip through, an alert reads: ⚠ ASIC ENFORCEMENT ACTION: errors are reaching customers.
 
@@ -80,11 +80,11 @@ The regulator sees the gap: of 14 licensees planning to expand AI, **only one** 
 
 The model starts from today's sector: 552,900 workers (Jobs and Skills Australia 2025) and AI use at 24% of firms (ABS 2026a), rising to 72–80% by 2030. AI can draft or assist with about 44% of work hours (Microsoft & Tech Council of Australia 2023) and lifts output on that work by 30% (Chen & Stratton 2026). The baseline is today's trends continuing; the upside is what happens if checking goes right; the downside, if it goes wrong.
 
-**Baseline: the review backlog.** If today's trends continue: agents spread across most large firms by 2028, but senior reviewers stay scarce, and each finance draft needs more checking than code. Pass-through falls to 0.12, against 0.20 in software: drafts rise 9.5% while finished output rises 1.1%. After error costs the net gain is roughly zero. Watch: approval times and assurance hiring.
+**Baseline: the review backlog.** Today's trends continue. Agents spread across most large firms by 2028, but senior reviewers stay scarce and each finance draft needs more checking than code. Drafts rise 9.5%; finished output just 1.1%. Pass-through is 0.12, against 0.20 in software. *Trigger:* None: this is the default path. *Watch:* Approval times and assurance hiring.
 
-**Upside: verification catches up.** If checking goes right: firms invest in checking, and regulators set clear expectations for AI output. Capacity keeps pace and auditable AI handles routine checks, so almost every extra draft gets through: finished output rises 10.6%, about 8% after error costs. Trigger: ASIC and APRA guidance under existing powers.
+**Upside: verification catches up.** Checking goes right. Firms invest in checking and auditable AI handles routine checks, so almost every extra draft gets through: finished output rises 10.6%, about 8% after error costs. *Trigger:* ASIC and APRA guidance under existing powers. *Watch:* AI error rates falling.
 
-**Downside: slop accumulation.** If checking goes wrong: firms let AI rubber-stamp AI. Output looks strong at first because unchecked drafts ship. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI. Trigger: an AI-caused incident revives the paused guardrails. Warning sign: 72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026).
+**Downside: slop accumulation.** Checking goes wrong. Firms let AI rubber-stamp AI, so output looks strong at first. Then errors surface as breaches and remediation, and junior cuts shrink future checking capacity. By 2029 net output is 3.5% below a world without AI. *Trigger:* An AI-caused incident revives the paused guardrails. *Watch:* 72% of financial institutions use AI agents in underwriting, but only 3% say their data is fully ready (Australian Broker 2026).
 
 **Testing the Industry Week claim.** At Industry Week, Dave Lemphers of Maincode argued that AI will change work profoundly, but that the opportunities it creates will outweigh what it displaces (Lemphers 2026); elsewhere he calls AI "a productivity lift for Australian businesses" (Lemphers 2025). The evidence supports him on jobs: adopting firms saw no fall in employment, and the IMF finds about half of exposed jobs in advanced economies are ones AI complements (Cazzaniga et al. 2024). It qualifies him on productivity: a lift in tasks is not a lift in output. His optimism holds only in the upside, so investment in checking is the hinge between his forecast and the baseline.
 
