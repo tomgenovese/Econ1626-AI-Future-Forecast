@@ -1,6 +1,6 @@
 *Final essay text, exported from the live website (forecast.html and its interactives) so it can be read in one place. The website is the submitted essay; this file mirrors it.*
 
-*Word count: about 2,100 words as a reader sees them (excluding references, these notes and the "Interactive" labels, and counting one version of the guess reveal).*
+*Word count: about 2,170 words as a reader sees them (excluding references, these notes and the "Interactive" labels, and counting one version of the guess reveal).*
 
 # Generation is cheap. Verification is scarce.
 
@@ -50,9 +50,11 @@ AI review tools have not solved it: nearly 80% of the firms used them, yet AI wr
 
 The result is "AI slop": unchecked output piling up, and no more finished products leaving the building.
 
-> **Interactive: Approve the drafts.** You are the senior reviewer. Approve the AI's good drafts and reject those with an error. How many can you clear in 60 seconds?
+> **Interactive: Approve the drafts.** You are the senior reviewer. Each draft shows the rule to check: approve it if it passes, reject it if it breaks the rule. For 20 seconds, drafts arrive at human speed. Then AI agents arrive.
 >
-> *End screen:* You checked N drafts. M were still waiting. You approved Y with an error and caught Z. The AI never slowed down; you were the bottleneck. That is the review queue Chen and Stratton measured, and finance drafts take longer to check.
+> *Phases:* drafts arrive at human speed for 20 seconds, then AI agents arrive (drafts three times faster), then AI moves into finance. Each draft shows its rule: Approve only if tests passed and no security check is removed. Approve only if repayments are under 35% of monthly income. Approve only if the advice matches the client's risk profile. Approve only if transactions were actually screened. Approve only if the customer is offered real help.
+>
+> *End screen:* Before AI, X drafts were waiting. By the end, Y were. You checked N drafts and approved Z with an error. The AI never slowed down; you were the bottleneck. That is the review queue Chen and Stratton measured.
 
 ---
 
@@ -70,7 +72,7 @@ The regulator sees the gap: of 14 licensees planning to expand AI, **only one** 
 
 **▶ Now try letting AI do the checking.** Push it past 60%.
 
-> **Interactive: The checkout queue.** Each square is a draft; red ones contain an error. Humans catch 9 in 10 errors. AI checkers catch about 6 in 10 when lightly used, and fewer as they take more of the load, because AI checking AI shares its blind spots. Sliders: AI drafting boost, human checkers, checking per draft, AI checking share. If too many errors slip through, an alert reads: ⚠ ASIC ENFORCEMENT ACTION: errors are reaching customers.
+> **Interactive: The checkout queue.** Each square is a draft; red ones contain an error. More AI drafting also means more checking per draft, because AI drafts contain more errors. Humans catch 9 in 10 errors. AI checkers catch about 6 in 10 when lightly used, and fewer as they take more of the load, because AI checking AI shares its blind spots. Sliders: AI drafting boost, human checkers, checking per draft, AI checking share. If too many errors slip through, an alert reads: ⚠ ASIC ENFORCEMENT ACTION: errors are reaching customers.
 
 ---
 

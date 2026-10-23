@@ -279,58 +279,83 @@
   }
 
 
-  /* ---------- Approve-the-drafts game (60 seconds) ---------- */
+  /* ---------- Approve-the-drafts game (60 seconds, three phases) ---------- */
+  const RULES = {
+    pr: "Approve only if tests passed and no security check is removed.",
+    loan: "Approve only if repayments are under 35% of monthly income.",
+    soa: "Approve only if the advice matches the client's risk profile.",
+    aml: "Approve only if transactions were actually screened.",
+    hard: "Approve only if the customer is offered real help.",
+  };
   const CODE = [
-    { t: "Pull request #412", r: [["Change", "Add input check to login form"], ["Tests", "14 passed"], ["Files", "2 changed"]] },
-    { t: "Pull request #415", r: [["Change", "Speed up report export"], ["Tests", "31 passed"], ["Files", "4 changed"]] },
-    { t: "Pull request #419", r: [["Change", "Fix date format on statements"], ["Tests", "9 passed"], ["Files", "1 changed"]] },
-    { t: "Pull request #421", r: [["Change", "Refactor payment module"], ["Tests", "0 run"], ["Files", "38 changed"]], bad: true },
-    { t: "Pull request #426", r: [["Change", "Update login page"], ["Tests", "22 passed"], ["Note", "Removes password check"]], bad: true },
-    { t: "Pull request #430", r: [["Change", "Add logging to API"], ["Tests", "17 passed"], ["Files", "3 changed"]] },
+    { k: "pr", t: "Pull request #412", r: [["Change", "Add input check to login form"], ["Tests", "14 passed"]] },
+    { k: "pr", t: "Pull request #415", r: [["Change", "Speed up report export"], ["Tests", "31 passed"]] },
+    { k: "pr", t: "Pull request #419", r: [["Change", "Fix date format on statements"], ["Tests", "9 passed"]] },
+    { k: "pr", t: "Pull request #430", r: [["Change", "Add logging to API"], ["Tests", "17 passed"]] },
+    { k: "pr", t: "Pull request #421", r: [["Change", "Refactor payment module"], ["Tests", "0 run"]], bad: "no tests were run" },
+    { k: "pr", t: "Pull request #426", r: [["Change", "Update login page"], ["Tests", "22 passed"], ["Note", "Removes password check"]], bad: "it removes a security check" },
   ];
   const FIN = [
-    { t: "Loan assessment", r: [["Income", "$92,000"], ["Repayments", "$1,850 / month"], ["Serviceability", "PASS"]] },
-    { t: "Loan assessment", r: [["Income", "$41,000"], ["Repayments", "$3,900 / month"], ["Serviceability", "PASS"]], bad: true },
-    { t: "Statement of advice", r: [["Client", "Age 67, retired"], ["Risk profile", "Conservative"], ["Recommends", "Cash and bonds"]] },
-    { t: "Statement of advice", r: [["Client", "Age 69, retired"], ["Risk profile", "Conservative"], ["Recommends", "90% crypto"]], bad: true },
-    { t: "AML screening report", r: [["Transactions", "312 screened"], ["Flagged", "2, escalated"], ["Status", "Complete"]] },
-    { t: "AML screening report", r: [["Transactions", "0 screened"], ["Flagged", "0"], ["Status", "Complete"]], bad: true },
-    { t: "Hardship response", r: [["Customer", "Lost job in May"], ["Offer", "3-month pause"], ["Fees", "Waived"]] },
+    { k: "loan", t: "Loan assessment", r: [["Monthly income", "$7,670"], ["Repayments", "$1,850 / month"]] },
+    { k: "loan", t: "Loan assessment", r: [["Monthly income", "$6,500"], ["Repayments", "$2,100 / month"]] },
+    { k: "loan", t: "Loan assessment", r: [["Monthly income", "$3,420"], ["Repayments", "$3,900 / month"]], bad: "repayments exceed income" },
+    { k: "soa", t: "Statement of advice", r: [["Risk profile", "Conservative"], ["Recommends", "Cash and bonds"]] },
+    { k: "soa", t: "Statement of advice", r: [["Risk profile", "Conservative"], ["Recommends", "90% crypto"]], bad: "crypto doesn't suit a conservative client" },
+    { k: "aml", t: "AML screening report", r: [["Transactions", "312 screened"], ["Flagged", "2, escalated"]] },
+    { k: "aml", t: "AML screening report", r: [["Transactions", "0 screened"], ["Status", "Complete"]], bad: "nothing was screened" },
+    { k: "hard", t: "Hardship response", r: [["Customer", "Lost job in May"], ["Offer", "3-month repayment pause"]] },
+    { k: "hard", t: "Hardship response", r: [["Customer", "Lost job in May"], ["Offer", "None; $250 late fee added"]], bad: "no help is offered" },
+  ];
+  // phases by elapsed seconds: 0-20 human speed, 20-40 AI writes code, 40-60 AI moves into finance
+  const PHASES = [
+    { from: 0, name: "Before AI", next: "AI agents arrive in", gap: () => 3200, pool: CODE },
+    { from: 20, name: "AI agents writing code", next: "AI moves into finance in", gap: el => 1100 - (el - 20) * 10, pool: CODE, banner: "> AI AGENTS DEPLOYED: DRAFTS NOW ARRIVE 3x FASTER" },
+    { from: 40, name: "AI agents in finance", next: null, gap: () => 750, pool: FIN, banner: "> AI AGENTS NOW DEPLOYED IN FINANCE" },
   ];
   function initGame() {
     const root = $("#game"); if (!root) return;
     const st = { on: false };
     const draftEl = $("#g-draft"), pile = $("#g-pile");
     const pick = arr => ({ ...arr[Math.floor(Math.random() * arr.length)] });
+    const elapsed = () => 60 - st.left;
+    const phaseAt = el => (el >= 40 ? 2 : el >= 20 ? 1 : 0);
     function show() {
       const d = st.queue[0];
-      if (!d) { draftEl.innerHTML = '<h4>Queue empty</h4><p style="margin:0;color:var(--ink-dim)">Waiting for the next AI draft...</p>'; return; }
-      draftEl.innerHTML = `<h4>${d.t}</h4><dl>${d.r.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
+      if (!d) { draftEl.innerHTML = '<h4>Queue empty</h4><p style="margin:0;color:var(--ink-dim)">Waiting for the next draft...</p>'; return; }
+      draftEl.innerHTML = `<h4>${d.t}${d.ai ? ' <span class="ai-tag">AI draft</span>' : ""}</h4><p class="draft__rule">${RULES[d.k]}</p><dl>${d.r.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
     }
     function hud() {
+      const el = elapsed(), ph = phaseAt(el), P = PHASES[ph];
+      const toNext = P.next ? Math.max(0, Math.ceil(PHASES[ph + 1].from - el)) : 0;
+      $("#g-phase").innerHTML = P.next ? `${P.name}. <b class="cd">${P.next} 0:${String(toNext).padStart(2, "0")}</b>` : `<b class="cd">${P.name}</b>`;
       $("#g-time").textContent = Math.max(0, Math.ceil(st.left));
       $("#g-wait").textContent = Math.max(0, st.queue.length - 1);
       $("#g-ok").textContent = st.ok; $("#g-no").textContent = st.no;
       $("#g-bar").style.width = (st.left / 60) * 100 + "%";
-      pile.innerHTML = st.queue.slice(1, 60).map(d => `<i class="${d.fin ? "fin" : ""}"></i>`).join("") +
+      pile.innerHTML = st.queue.slice(1, 60).map(d => `<i class="${d.fin ? "fin" : d.ai ? "ai" : ""}"></i>`).join("") +
         (st.queue.length > 61 ? `<span style="font-family:var(--mono);font-size:.75rem;color:var(--amber)">+${st.queue.length - 61}</span>` : "");
     }
     function spawn() {
-      const fin = st.left < 30;
-      if (fin && !st.bannered) { st.bannered = true; $("#g-banner").hidden = false; }
-      st.queue.push({ ...pick(fin ? FIN : CODE), fin });
+      const el = elapsed(), ph = phaseAt(el), P = PHASES[ph];
+      if (ph !== st.phase) {
+        st.phase = ph;
+        if (ph === 1) st.waitBefore = st.queue.length;
+        if (P.banner) { const b = $("#g-banner"); b.textContent = P.banner; b.hidden = false; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }
+      }
+      st.queue.push({ ...pick(P.pool), fin: ph === 2, ai: ph > 0 });
       if (st.queue.length === 1) show();
       hud();
-      // arrivals speed up from one every 2.6s to one every 0.7s
-      const gap = Math.max(700, 2600 - (60 - st.left) * 45);
-      st.spawnT = setTimeout(() => st.on && spawn(), gap);
+      st.spawnT = setTimeout(() => st.on && spawn(), Math.max(650, P.gap(el)));
     }
     function decide(approve) {
       if (!st.on || !st.queue.length) return;
-      const d = st.queue.shift();
-      if (approve) { st.ok++; if (d.bad) st.missed++; } else { st.no++; if (!d.bad) st.wrongReject++; else st.caught++; }
+      const d = st.queue.shift(), right = approve ? !d.bad : !!d.bad;
+      if (approve) { st.ok++; if (d.bad) st.missed++; } else { st.no++; if (d.bad) st.caught++; }
+      const fb = $("#g-fb");
+      fb.className = "game__fb " + (right ? "ok" : "bad");
+      fb.textContent = right ? (d.bad ? `✓ Caught it: ${d.bad}.` : "✓ Correct.") : (d.bad ? `✗ Missed error: ${d.bad}.` : "✗ That draft passed the rule.");
       draftEl.classList.remove("flash-ok", "flash-bad"); void draftEl.offsetWidth;
-      draftEl.classList.add((approve && !d.bad) || (!approve && d.bad) ? "flash-ok" : "flash-bad");
+      draftEl.classList.add(right ? "flash-ok" : "flash-bad");
       show(); hud();
     }
     function end() {
@@ -338,17 +363,18 @@
       const waiting = st.queue.length, checked = st.ok + st.no;
       $("#game-play").hidden = true;
       const e = $("#game-end"); e.hidden = false;
-      e.innerHTML = `<p class="big">You checked ${checked} drafts. ${waiting} were still waiting.</p>
-        <p>You approved ${st.missed} with an error and caught ${st.caught}. The AI never slowed down; you were the bottleneck. That is the review queue Chen and Stratton measured, and finance drafts take longer to check.</p>
-        <button class="btn" id="game-again">Play again</button>`;
+      e.innerHTML = `<p class="big">Before AI, ${st.waitBefore ?? waiting} drafts were waiting. By the end, ${waiting} were.</p>
+        <p>You checked ${checked} drafts and approved ${st.missed} with an error. The AI never slowed down; you were the bottleneck. That is the review queue Chen and Stratton measured.</p>
+        <button class="btn btn--go" id="game-again">Play again</button>`;
       $("#game-again").addEventListener("click", start);
     }
     function start() {
-      Object.assign(st, { on: true, left: 60, queue: [], ok: 0, no: 0, missed: 0, caught: 0, wrongReject: 0, bannered: false });
+      Object.assign(st, { on: true, left: 60, queue: [], ok: 0, no: 0, missed: 0, caught: 0, phase: 0, waitBefore: null });
       $("#game-start").hidden = true; $("#game-end").hidden = true; $("#game-play").hidden = false; $("#g-banner").hidden = true;
+      $("#g-fb").textContent = "";
       show(); hud(); spawn();
       const t0 = performance.now();
-      st.tick = setInterval(() => { st.left = 60 - (performance.now() - t0) / 1000; hud(); if (st.left <= 0) end(); }, 250);
+      st.tick = setInterval(() => { st.left = 60 - (performance.now() - t0) / 1000; hud(); if (st.left <= 0) end(); }, 200);
     }
     $("#game-go").addEventListener("click", start);
     $("#game-skip").addEventListener("click", end);
@@ -360,7 +386,6 @@
       if (e.key === "r" || e.key === "R") decide(false);
     });
   }
-
 
   /* ---------- You're the regulator (5 decisions) ---------- */
   const DECISIONS = [

@@ -96,16 +96,16 @@
     <div class="panel__bar"><b>Approve the drafts</b><span class="tag-play">▶ Play: 60 seconds</span></div>
     <div class="panel__body game" id="game">
       <div class="game__start" id="game-start">
-        <p class="guess__q">You are the senior reviewer. Approve the AI's good drafts and reject those with an error. How many can you clear in 60 seconds?</p>
+        <p class="guess__q">You are the senior reviewer. Each draft shows the rule to check: approve it if it passes, reject it if it breaks the rule. For 20 seconds, drafts arrive at human speed. Then AI agents arrive.</p>
         <button class="btn btn--go" id="game-go">Start reviewing</button>
       </div>
       <div class="game__play" id="game-play" hidden>
         <div class="game__hud">
-          <span>Time <b id="g-time">60</b>s</span><span>Waiting <b id="g-wait" class="warn">0</b></span><span>Approved <b id="g-ok">0</b></span><span>Rejected <b id="g-no">0</b></span>
+          <span class="game__phase" id="g-phase"></span><span>Time <b id="g-time">60</b>s</span><span>Waiting <b id="g-wait" class="warn">0</b></span><span>Approved <b id="g-ok">0</b></span><span>Rejected <b id="g-no">0</b></span>
           <button class="btn" id="game-skip" style="padding:0.2rem 0.6rem;font-size:0.75rem">Skip</button>
         </div>
         <div class="game__timer"><div id="g-bar"></div></div>
-        <div class="game__banner" id="g-banner" hidden>&gt; AI AGENTS NOW DEPLOYED IN FINANCE</div>
+        <div class="game__banner" id="g-banner" hidden></div>
         <div class="game__row">
           <div class="draft" id="g-draft" aria-live="polite"></div>
           <div class="game__pile" id="g-pile" aria-hidden="true"></div>
@@ -113,6 +113,7 @@
         <div class="game__btns">
           <button class="btn btn--go" id="g-approve"><span class="key" style="color:#000">A</span>Approve</button>
           <button class="btn" id="g-reject"><span class="key">R</span>Reject</button>
+          <p class="game__fb" id="g-fb" aria-live="polite"></p>
         </div>
       </div>
       <div class="game__end" id="game-end" hidden></div>
