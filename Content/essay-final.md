@@ -153,7 +153,7 @@ Each year the model compares the checking that AI-boosted drafts need with the c
 
 ## AI use disclosure (not included in word count)
 
-I used Claude (Anthropic) throughout this assessment. The thesis (that checking, not producing, is AI's bottleneck) and the focus on Australian financial services were my own ideas. I chose the Chen & Stratton (2026) Harvard paper as the central evidence. Claude helped me find the other sources, and I verified each one against the original; this caught errors, including a figure that had to be re-sourced. Claude expanded my outline and edits into fuller drafts, which I then revised and cut to length. Claude wrote the code for the scenario model, charts and interactives. Over many rounds of back-and-forth, I directed the design, tested each interactive and asked for changes until the site worked as I intended. I take responsibility for every claim in this essay.
+I used Claude (Anthropic) throughout this assessment. The bottleneck idea (that checking, not producing, limits AI's gains) came from reading the Chen & Stratton (2026) Harvard paper on AI coding agents. Applying it to Australian financial services for this assessment was my own idea, and I made that paper the central evidence. Claude helped me find the other sources, and I verified each one against the original; this caught errors, including a figure that had to be re-sourced. Claude expanded my outline and edits into fuller drafts, which I then revised and cut to length. Claude wrote the code for the scenario model, charts and interactives. Over many rounds of back-and-forth, I directed the design, tested each interactive and asked for changes until the site worked as I intended. I take responsibility for every claim in this essay.
 
 ---
 
