@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=24">
 </head>
 <body>
 
@@ -100,8 +100,13 @@
         <button class="btn btn--go" id="game-go">Start reviewing</button>
       </div>
       <div class="game__play" id="game-play" hidden>
+        <div class="game__stage">
+          <div><p class="game__stage-n" id="g-stage-n">Phase 1 of 3</p><h4 class="game__stage-h" id="g-stage-h">Before AI</h4></div>
+          <div class="game__cd"><span id="g-cd">0:20</span><small id="g-cd-l">until AI agents arrive</small></div>
+        </div>
+        <div class="game__segs" aria-hidden="true"><span><i id="g-seg0"></i><b>Before AI</b></span><span><i id="g-seg1"></i><b>AI writes code</b></span><span><i id="g-seg2"></i><b>AI in finance</b></span></div>
         <div class="game__hud">
-          <span class="game__phase" id="g-phase"></span><span>Time <b id="g-time">60</b>s</span><span>Waiting <b id="g-wait" class="warn">0</b></span><span>Approved <b id="g-ok">0</b></span><span>Rejected <b id="g-no">0</b></span>
+          <span>Time <b id="g-time">60</b>s</span><span>Waiting <b id="g-wait" class="warn">0</b></span><span>Approved <b id="g-ok">0</b></span><span>Rejected <b id="g-no">0</b></span>
           <button class="btn" id="game-skip" style="padding:0.2rem 0.6rem;font-size:0.75rem">Skip</button>
         </div>
         <div class="game__timer"><div id="g-bar"></div></div>
@@ -299,8 +304,8 @@
 
 <footer>Built with plain HTML, CSS and JavaScript. Model and data: see README in the repository.</footer>
 
-<script src="assets/model.js"></script>
-<script src="assets/app.js"></script>
-<script src="assets/modules.js"></script>
+<script src="assets/model.js?v=24"></script>
+<script src="assets/app.js?v=24"></script>
+<script src="assets/modules.js?v=24"></script>
 </body>
 </html>

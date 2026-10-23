@@ -531,3 +531,22 @@ input[type=range] { accent-color: var(--hi); }
 @media (prefers-reduced-motion: reduce) { .game__banner.pop { animation: none; } }
 
 .refs p a { word-break: break-all; }
+
+/* Game stage header + countdown */
+.game__stage { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.game__stage-n { margin: 0; font-family: var(--mono); font-size: 0.78rem; color: var(--ink-dim); }
+.game__stage-h { margin: 0.1rem 0 0; font-family: var(--mono); font-weight: 500; font-size: clamp(1.1rem, 2.2vw, 1.6rem); color: var(--neon); }
+.game__cd { text-align: right; font-family: var(--mono); line-height: 1; }
+.game__cd span { display: block; font-size: clamp(2.2rem, 5vw, 3.4rem); color: var(--hi); }
+.game__cd small { font-size: 0.75rem; color: var(--ink-dim); }
+.game__cd.soon span { color: var(--red); animation: blink 1s steps(1) infinite; }
+.game__segs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 0.9rem; }
+.game__segs span { position: relative; height: 22px; background: #0b1a10; border: 1px solid var(--rule-strong); overflow: hidden; }
+.game__segs i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--hi); opacity: 0.85; }
+.game__segs b { position: relative; z-index: 1; font-family: var(--mono); font-weight: 500; font-size: 0.7rem; line-height: 20px; padding-left: 0.4rem; color: var(--ink); mix-blend-mode: difference; }
+.game__timer { display: none; }
+@media (prefers-reduced-motion: reduce) { .game__cd.soon span { animation: none; } }
+.game__segs span { height: auto; background: none; border: none; overflow: visible; display: grid; gap: 4px; }
+.game__segs span::before { content: ""; display: block; height: 8px; background: #0b1a10; border: 1px solid var(--rule-strong); grid-row: 1; grid-column: 1; }
+.game__segs i { position: static; display: block; height: 8px; grid-row: 1; grid-column: 1; opacity: 1; }
+.game__segs b { mix-blend-mode: normal; line-height: 1.2; padding: 0; font-size: 0.72rem; color: var(--ink-dim); grid-row: 2; }

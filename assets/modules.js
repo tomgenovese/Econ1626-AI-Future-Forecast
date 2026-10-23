@@ -308,9 +308,9 @@
   ];
   // phases by elapsed seconds: 0-20 human speed, 20-40 AI writes code, 40-60 AI moves into finance
   const PHASES = [
-    { from: 0, name: "Before AI", next: "AI agents arrive in", gap: () => 3200, pool: CODE },
-    { from: 20, name: "AI agents writing code", next: "AI moves into finance in", gap: el => 1100 - (el - 20) * 10, pool: CODE, banner: "> AI AGENTS DEPLOYED: DRAFTS NOW ARRIVE 3x FASTER" },
-    { from: 40, name: "AI agents in finance", next: null, gap: () => 750, pool: FIN, banner: "> AI AGENTS NOW DEPLOYED IN FINANCE" },
+    { from: 0, name: "Before AI: drafts at human speed", until: "until AI agents arrive", next: "AI agents arrive in", gap: () => 3200, pool: CODE },
+    { from: 20, name: "AI agents writing code: 3x faster", until: "until AI moves into finance", next: "AI moves into finance in", gap: el => 1100 - (el - 20) * 10, pool: CODE, banner: "> AI AGENTS DEPLOYED: DRAFTS NOW ARRIVE 3x FASTER" },
+    { from: 40, name: "AI agents in finance: stricter checks", until: "until the game ends", next: null, gap: () => 750, pool: FIN, banner: "> AI AGENTS NOW DEPLOYED IN FINANCE" },
   ];
   function initGame() {
     const root = $("#game"); if (!root) return;
@@ -326,8 +326,13 @@
     }
     function hud() {
       const el = elapsed(), ph = phaseAt(el), P = PHASES[ph];
-      const toNext = P.next ? Math.max(0, Math.ceil(PHASES[ph + 1].from - el)) : 0;
-      $("#g-phase").innerHTML = P.next ? `${P.name}. <b class="cd">${P.next} 0:${String(toNext).padStart(2, "0")}</b>` : `<b class="cd">${P.name}</b>`;
+      const endAt = (ph + 1) * 20, toEnd = Math.max(0, Math.ceil(endAt - el));
+      $("#g-stage-n").textContent = `Phase ${ph + 1} of 3`;
+      $("#g-stage-h").textContent = P.name;
+      $("#g-cd").textContent = `0:${String(toEnd).padStart(2, "0")}`;
+      $("#g-cd-l").textContent = P.until;
+      root.querySelector(".game__cd").classList.toggle("soon", toEnd <= 5 && ph < 2);
+      [0, 1, 2].forEach(i => { $(`#g-seg${i}`).style.width = Math.max(0, Math.min(1, (el - i * 20) / 20)) * 100 + "%"; });
       $("#g-time").textContent = Math.max(0, Math.ceil(st.left));
       $("#g-wait").textContent = Math.max(0, st.queue.length - 1);
       $("#g-ok").textContent = st.ok; $("#g-no").textContent = st.no;
