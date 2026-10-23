@@ -143,12 +143,12 @@
           </div>
           <div class="alert" id="q-alert" role="status">⚠ ASIC ENFORCEMENT ACTION: errors are reaching customers</div>
           <div class="queue__ctrls">
-            <div class="ctrl"><label for="q-speed">AI drafting boost</label><output id="q-speed-o"></output><input type="range" id="q-speed" min="0" max="100" step="5"></div>
-            <div class="ctrl"><label for="q-checkers">Human checkers</label><output id="q-checkers-o"></output><input type="range" id="q-checkers" min="1" max="6" step="1"></div>
+            <div class="ctrl"><label for="q-speed">AI drafting boost</label><output id="q-speed-o"></output><input type="range" id="q-speed" min="0" max="200" step="10"></div>
+            <div class="ctrl"><label for="q-checkers">Human checkers</label><output id="q-checkers-o"></output><input type="range" id="q-checkers" min="1" max="4" step="1"></div>
             <div class="ctrl"><label for="q-strict">Checking per draft</label><output id="q-strict-o"></output><input type="range" id="q-strict" min="100" max="200" step="10"></div>
             <div class="ctrl"><label for="q-ai">AI checking share</label><output id="q-ai-o"></output><input type="range" id="q-ai" min="0" max="80" step="5"></div>
           </div>
-          <p class="panel__note">Each square is a draft; red ones contain an error. Humans catch 9 in 10 errors. AI checkers catch about 6 in 10 when lightly used, and fewer as they take more of the load, because AI checking AI shares its blind spots.</p>
+          <p class="panel__note">Each square is a draft; red ones contain an error. More AI drafting also means more checking per draft, because AI drafts contain more errors. Humans catch 9 in 10 errors. AI checkers catch about 6 in 10 when lightly used, and fewer as they take more of the load, because AI checking AI shares its blind spots.</p>
         </div>
       </div>
     </div>

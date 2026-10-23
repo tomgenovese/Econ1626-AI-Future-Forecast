@@ -72,7 +72,7 @@
 
     let S, visible = false, last = 0, raf = 0;
     function reset() {
-      S = { t: 0, spawnAcc: 0, belt: [], hq: [], aq: [], booths: [], ai: { item: null, left: 0 }, done: 0, slips: [], slipTotal: 0, arrivals: 0 };
+      S = { t: 0, spawnAcc: 0, belt: [], hq: [], aq: [], booths: [], ai: { item: null, left: 0 }, done: 0, slips: [], finT: [], slipTotal: 0, arrivals: 0 };
     }
     reset();
     const val = k => +ctrls[k].value;
@@ -107,18 +107,21 @@
         (it.toAI ? S.aq : S.hq).push(it);
       }
       const finish = (it, catchRate) => {
-        if (it.err && Math.random() > catchRate) { S.slips.push(S.t); S.slipTotal++; S.done++; }
-        else if (!it.err) S.done++;
+        if (it.err && Math.random() > catchRate) { S.slips.push(S.t); S.slipTotal++; S.done++; S.finT.push(S.t); }
+        else if (!it.err) { S.done++; S.finT.push(S.t); }
       };
-      const htime = HUMAN_TIME * (val("strict") / 100);
+      // quality channel: more AI drafting means more checking per draft (Chen & Stratton 2026)
+      const qual = 1 + 0.6 * val("speed") / 100;
+      const htime = HUMAN_TIME * (val("strict") / 100) * qual;
       S.booths.forEach(b => {
         if (b.item) { b.left -= dt; if (b.left <= 0) { finish(b.item, HUMAN_CATCH); b.item = null; } }
         if (!b.item && S.hq.length) { b.item = S.hq.shift(); b.left = htime; b.total = htime; }
       });
       const a = S.ai;
       if (a.item) { a.left -= dt; if (a.left <= 0) { finish(a.item, AI_CATCH + 0.2 - 0.5 * val("ai") / 100); a.item = null; } }
-      if (!a.item && S.aq.length) { a.item = S.aq.shift(); a.left = AI_TIME; a.total = AI_TIME; }
+      if (!a.item && S.aq.length) { a.item = S.aq.shift(); a.left = AI_TIME * qual; a.total = AI_TIME * qual; }
       S.slips = S.slips.filter(t => S.t - t < 60);
+      S.finT = S.finT.filter(t => S.t - t < 60);
     }
 
     function sq(x, y, s, it, alpha = 1) {
@@ -165,7 +168,8 @@
       el("q-wait").textContent = S.hq.length + S.aq.length;
       el("q-rate").textContent = Math.round(BASE_RATE * (1 + val("speed") / 100) * 60);
       el("q-slip").textContent = S.slipTotal;
-      el("q-alert").classList.toggle("is-on", S.slips.length >= 5);
+      // alert when more than 4% of recently finished drafts carry an undetected error
+      el("q-alert").classList.toggle("is-on", S.slips.length >= 3 && S.slips.length / Math.max(1, S.finT.length) > 0.04);
       const secs = Math.floor(S.t / SIM_SPEED);
       el("q-clock").textContent = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`;
     }
