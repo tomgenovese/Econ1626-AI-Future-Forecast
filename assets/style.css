@@ -550,3 +550,6 @@ input[type=range] { accent-color: var(--hi); }
 .game__segs span::before { content: ""; display: block; height: 8px; background: #0b1a10; border: 1px solid var(--rule-strong); grid-row: 1; grid-column: 1; }
 .game__segs i { position: static; display: block; height: 8px; grid-row: 1; grid-column: 1; opacity: 1; }
 .game__segs b { mix-blend-mode: normal; line-height: 1.2; padding: 0; font-size: 0.72rem; color: var(--ink-dim); grid-row: 2; }
+
+/* AI use disclosure: normal paragraph, not a hanging-indent reference */
+.refs p.disclosure { padding-left: 0; text-indent: 0; color: var(--ink); font-size: 1rem; line-height: 1.6; }

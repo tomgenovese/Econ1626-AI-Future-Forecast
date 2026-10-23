@@ -67,4 +67,6 @@ The site is plain HTML, CSS and JavaScript, with no frameworks or build step.
 
 ## Use of AI
 
-In line with the assessment's guidance, AI tools were used and are acknowledged here. I used Claude (Anthropic) to help find and summarise sources, structure the argument, draft text that I then edited, and write the code for the model, charts and interactives. I checked every figure against its original source.
+I used Claude (Anthropic) throughout this assessment. The thesis (that checking, not producing, is AI's bottleneck) and the focus on Australian financial services were my own ideas. I chose the Chen & Stratton (2026) Harvard paper as the central evidence. Claude helped me find the other sources, and I verified each one against the original; this caught errors, including a figure that had to be re-sourced. Claude expanded my outline and edits into fuller drafts, which I then revised and cut to length. Claude wrote the code for the scenario model, charts and interactives. Over many rounds of back-and-forth, I directed the design, tested each interactive and asked for changes until the site worked as I intended. I take responsibility for every claim in this essay.
+
+The same statement appears on the website, just above the references.

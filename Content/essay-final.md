@@ -1,6 +1,6 @@
 *Final essay text, exported from the live website (forecast.html and its interactives) so it can be read in one place. The website is the submitted essay; this file mirrors it.*
 
-*Word count: about 2,170 words as a reader sees them (excluding references, these notes and the "Interactive" labels, and counting one version of the guess reveal).*
+*Word count: about 2,130 words as a reader sees them (excluding references, the AI use disclosure, these notes and the "Interactive" labels, and counting one version of the guess reveal).*
 
 # Generation is cheap. Verification is scarce.
 
@@ -147,9 +147,13 @@ Each year the model compares the checking that AI-boosted drafts need with the c
 - **Structural breaks.** A leap in AI reliability would shrink the quality problem; a major AI-caused incident could trigger sudden regulation.
 - **Measurement.** Much of finance output is imputed in the national accounts (Gordon et al. 2016), so AI's effects will be hard to see. Self-reported gains mislead too: 30% of users in a CSIRO trial reported no benefit (Whittle 2025).
 
-**Use of AI.** I used Claude (Anthropic) to help find and summarise sources, structure the argument, draft text that I then edited, and write the code for the charts and interactives. I checked every figure against its original source.
-
 > **Interactive: Show the maths.** Readers can change the finance checking multiplier, the share of work AI can draft, and the cost of each slipped error, and see each scenario's 2030 result update.
+
+---
+
+## AI use disclosure (not included in word count)
+
+I used Claude (Anthropic) throughout this assessment. The thesis (that checking, not producing, is AI's bottleneck) and the focus on Australian financial services were my own ideas. I chose the Chen & Stratton (2026) Harvard paper as the central evidence. Claude helped me find the other sources, and I verified each one against the original; this caught errors, including a figure that had to be re-sourced. Claude expanded my outline and edits into fuller drafts, which I then revised and cut to length. Claude wrote the code for the scenario model, charts and interactives. Over many rounds of back-and-forth, I directed the design, tested each interactive and asked for changes until the site worked as I intended. I take responsibility for every claim in this essay.
 
 ---
 
