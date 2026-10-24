@@ -16,7 +16,8 @@ Best viewed on a laptop or desktop browser. It also works on mobile.
 1. [The argument in brief](#the-argument-in-brief)
 2. [How to read the site](#how-to-read-the-site)
 3. [Repository structure](#repository-structure)
-4. [Use of AI](#use-of-ai)
+4. [Run it yourself](#run-it-yourself)
+5. [Use of AI](#use-of-ai)
 
 ---
 
@@ -47,7 +48,7 @@ Hover over dotted-underlined terms for plain-English definitions. Every chart ha
 ```
 econ1626-ai-future-forecast/
 ├── index.html              Redirects to forecast.html
-├── forecast.html           The essay (the page markers should read)
+├── forecast.html           The essay (the page markers read)
 ├── assets/
 │   ├── style.css           Terminal theme and layout
 │   ├── model.js            The scenario model (runs in the browser)
@@ -64,6 +65,11 @@ econ1626-ai-future-forecast/
 ```
 
 The site is plain HTML, CSS and JavaScript, with no frameworks or build step.
+
+## Run it yourself
+
+- **The site:** download or clone this repository and open `forecast.html` in any web browser. No install or build step is needed.
+- **The model:** run `python3 Content/model_prototype.py` (Python 3, standard library only) to reproduce the scenario numbers. The browser version is in `assets/model.js`.
 
 ## Use of AI
 
